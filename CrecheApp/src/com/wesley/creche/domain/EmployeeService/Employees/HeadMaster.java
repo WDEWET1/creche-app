@@ -15,6 +15,7 @@ import com.wesley.creche.domain.EmployeeService.Qualifications;
 import com.wesley.creche.domain.EmployeeService.Remuneration;
 import com.wesley.creche.domain.EmployeeService.Work_Experience;
 import java.io.Serializable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +31,21 @@ public class HeadMaster implements Serializable,Person,Employee_Interface {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Embedded
+    private Contact contact;
+    @Embedded
+    private Address address;
+    @Embedded
+    private Demographics demographics;
+    @Embedded
+    private Leave leaveDays;
+    @Embedded
+    private Remuneration remuneration;
+    @Embedded
+    private Work_Experience workExperience;
+    @Embedded
+    private Qualifications qualifications;
+    
 
     public Long getId() {
         return id;
@@ -66,71 +82,71 @@ public class HeadMaster implements Serializable,Person,Employee_Interface {
 
     @Override
     public Contact getContact() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.contact;
     }
 
     @Override
     public Address getAddress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.address;
     }
 
     @Override
     public Demographics getDemographics() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.demographics;
     }
 
     @Override
     public Contact setContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.contact = contact;
     }
 
     @Override
     public Address setAddress(Address address) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.address = address;
     }
 
     @Override
     public Demographics setDemographics(Demographics demographics) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.demographics = demographics;
     }
 
     @Override
     public Qualifications getQualifications() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.qualifications;
     }
 
     @Override
     public Work_Experience getWorkExperience() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.workExperience;
     }
 
     @Override
     public Remuneration getRemuneration() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.remuneration;
     }
 
     @Override
     public Qualifications setQualifications(Qualifications qualifications) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.qualifications = qualifications;
     }
 
     @Override
     public Work_Experience setWorkExperience(Work_Experience workExperience) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.workExperience = workExperience;
     }
 
     @Override
     public Remuneration setRemuneration(Remuneration remuneration) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.remuneration = remuneration;
     }
 
     @Override
     public Leave getLeaveDays() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.leaveDays;
     }
 
     @Override
     public Leave setLeaveDays(Leave leave) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.leaveDays = leave;
     }
 }

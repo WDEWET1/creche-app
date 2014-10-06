@@ -157,14 +157,11 @@ public class Teacher implements Serializable,Person,Employee_Interface {
 
     @Override
     public Leave getLeaveDays() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.leaveDays;
     }
 
     @Override
     public Leave setLeaveDays(Leave leave) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.leaveDays = leave;
     }
-
-    
-    
 }
