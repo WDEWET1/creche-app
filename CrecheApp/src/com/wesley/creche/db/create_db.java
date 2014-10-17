@@ -58,7 +58,7 @@ public class create_db {
                     + "email VARCHAR(100), "
                     + "ph_number VARCHAR(100), "
                     + "address VARCHAR(100), "
-                    + "hire_date DATETIME, "
+                    + "hire_date DATE, "
                     + "salary NUMERIC(15,2)"
             + ")");
         }
@@ -74,10 +74,10 @@ public class create_db {
                     + "id_num INT(15) NOT NULL, "
                     + "name VARCHAR(100), "
                     + "last_name VARCHAR(100), "
-                    + "dob DATETIME, "
+                    + "dob DATE, "
                     + "med_con VARCHAR(100), "
-                    + "start_date DATETIME, "
-                    + "end_date DATETIME, "
+                    + "start_date DATE, "
+                    + "end_date DATE, "
                     + "grade VARCHAR(100), "
                     + "parent_id INT(10), "
                     + "emp_id INT(10)"
@@ -146,7 +146,7 @@ public class create_db {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Attendance ("
                     + "id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     + "child_id INT(10) NOT NULL, "
-                    + "date DATETIME, "
+                    + "date DATE, "
                     + "absent TINYINT(1)" //Boolean Value: 1 means true / 0 means false...!
             + ")");
         }
@@ -190,7 +190,7 @@ public class create_db {
                     + "quantity_per_unit INT(100), "
                     + "unit_price NUMERIC(15,2), "
                     + "units_in_stock INT, "
-                    + "last_date_update DATETIME"
+                    + "last_date_update DATE"
             + ")");
         }
         catch (SQLException ex){
@@ -217,7 +217,7 @@ public class create_db {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Orders ("
                     + "order_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     + "emp_id INT(10) NOT NULL, "
-                    + "order_date DATETIME"
+                    + "order_date DATE"
                     
             + ")");
         }
