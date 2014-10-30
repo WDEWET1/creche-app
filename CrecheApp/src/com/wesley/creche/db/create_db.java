@@ -10,12 +10,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
 /**
  *
  * @author karstensc
  */
 public class create_db {
+    
+    public static void main(String[] args) throws Exception {
+        create_db n = new create_db();
+        n.create_db();
+    }
     
     public void create_db() throws Exception {
         String driverName = "com.mysql.jdbc.Driver";
@@ -26,7 +32,7 @@ public class create_db {
         String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
 
         String username = "root";
-        String password = "123456";
+        String password = "";
 
 
         Connection connection = DriverManager.getConnection(url, username, password);
