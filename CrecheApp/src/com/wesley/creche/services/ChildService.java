@@ -30,11 +30,10 @@ public class ChildService {
         String password = "";
 
         System.out.println("about to send to database"+name+lastName);
+        int id = Integer.parseInt(id1);
         
         Connection connection = DriverManager.getConnection(url, username, password);
         Statement stmt = connection.createStatement();
-        
-        int id = Integer.parseInt(id1);
         
         stmt.executeUpdate("INSERT INTO child"
                 +"(id_num)"
