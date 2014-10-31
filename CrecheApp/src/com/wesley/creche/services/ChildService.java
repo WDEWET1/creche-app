@@ -7,8 +7,8 @@ package com.wesley.creche.services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Date;
 
 /**
@@ -33,11 +33,14 @@ public class ChildService {
         int id = Integer.parseInt(id1);
         
         Connection connection = DriverManager.getConnection(url, username, password);
-        Statement stmt = connection.createStatement();
         
-        stmt.executeUpdate("INSERT INTO child"
-                +"(id_num)"
-                +"values("+id+")");
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO child (name, last_name, id_num, med_con) VALUES(?,?,?,?)");
+        stmt.setString(1, name);
+        stmt.setString(2, lastName);
+        stmt.setString(3, id1);
+        stmt.setString(4, medical);
+        stmt.executeUpdate();
+        
         stmt.close();
         
         System.out.println("sent to database");

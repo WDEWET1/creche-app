@@ -10,7 +10,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
 
 /**
@@ -19,12 +18,6 @@ import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
  */
 public class create_db {
     
-    public static void main(String[] args) throws Exception {
-        create_db d = new create_db();
-        d.create_db();
-    }
-    
-
     public void create_db() throws Exception {
         String driverName = "com.mysql.jdbc.Driver";
         Class.forName(driverName);
