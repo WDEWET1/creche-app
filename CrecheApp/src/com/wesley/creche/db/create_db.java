@@ -12,6 +12,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
+
 /**
  *
  * @author karstensc
@@ -19,10 +20,11 @@ import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 public class create_db {
     
     public static void main(String[] args) throws Exception {
-        create_db n = new create_db();
-        n.create_db();
+        create_db d = new create_db();
+        d.create_db();
     }
     
+
     public void create_db() throws Exception {
         String driverName = "com.mysql.jdbc.Driver";
         Class.forName(driverName);
