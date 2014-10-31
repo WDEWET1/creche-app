@@ -515,8 +515,8 @@ public class RegistrationPanel extends javax.swing.JPanel {
         String med = "flu";
         
         //send values from form to initialise child domain
-        Child child;
-        child = ChildFactory.getChild(name, lastName, id, med, dob);
+        
+        Child child = ChildFactory.getChild(name, lastName, id, med, dob);
         ChildService cs = new ChildService();
         try {
             cs.insertChildData(name, lastName, id, med, dob);
