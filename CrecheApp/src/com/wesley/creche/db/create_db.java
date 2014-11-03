@@ -30,11 +30,10 @@ public class create_db {
         String password = "";
 
 
-        Connection connection = DriverManager.getConnection(url, username, password);
-        Statement stmt = connection.createStatement();
+        Connection con = DriverManager.getConnection(url, username, password);
+        Statement stmt = con.createStatement();
         
         //Create fees table
-        System.out.println("Creating fees table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Fees ("
                     + "fee_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -49,7 +48,6 @@ public class create_db {
         }
         
         //Create Employees table
-        System.out.println("Creating Employees table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Employees ("
                     + "emp_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -68,11 +66,10 @@ public class create_db {
         }
         
         //Create Child table
-        System.out.println("Creating Child table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Child ("
                     + "child_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
-                    + "id_num INT(15) NOT NULL, "
+                    + "id_num VARCHAR(50) NOT NULL, "
                     + "name VARCHAR(100), "
                     + "last_name VARCHAR(100), "
                     + "dob DATE, "
@@ -89,7 +86,6 @@ public class create_db {
         }
         
         //Create Job/Positions table
-        System.out.println("Creating Job/Positions table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Jobs ("
                     + "job_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -103,17 +99,16 @@ public class create_db {
         }
        
         //Create Parent table
-        System.out.println("Creating Parent table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Parent ("
                     + "parent_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     + "father_name VARCHAR(100), "
                     + "father_last_name VARCHAR(100), "
-                    + "father_ID_no INT(15), "
+                    + "father_ID_no VARCHAR(50), "
                     + "father_occupation VARCHAR(100), "
                     + "mother_name VARCHAR(100), "
                     + "mother_last_name VARCHAR(100), "
-                    + "mother_ID_no INT(15), "
+                    + "mother_ID_no VARCHAR(50), "
                     + "mother_occupation VARCHAR(100), "
                     + "child_id INT(10) NOT NULL"
             + ")");
@@ -123,7 +118,6 @@ public class create_db {
         }
         
         //Create Progress table
-        System.out.println("Creating Progress table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Progress ("
                     + "progress_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -142,7 +136,6 @@ public class create_db {
         }
         
         //Create Attendance table
-        System.out.println("Creating Attendance table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Attendance ("
                     + "id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -156,7 +149,6 @@ public class create_db {
         }
         
         //Create Emergency table
-        System.out.println("Creating Emergency table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Emergency ("
                     + "ambulance TINYINT(1), " //Boolean Value: 1 means true / 0 means false...!
@@ -169,7 +161,6 @@ public class create_db {
         }
         
         //Create Subject table
-        System.out.println("Creating Subject(s) table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Subject ("
                     + "subject_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -182,7 +173,6 @@ public class create_db {
         }
         
         //Create Products table
-        System.out.println("Creating Products table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Products ("
                     + "product_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -199,7 +189,6 @@ public class create_db {
         }
         
         //Create Categories table
-        System.out.println("Creating Categories table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Categories ("
                     + "cat_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -213,7 +202,6 @@ public class create_db {
         }
         
         //Create Orders table
-        System.out.println("Creating Orders table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Orders ("
                     + "order_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -227,7 +215,6 @@ public class create_db {
         }
         
         //Create Order Details table
-        System.out.println("Creating Order Details table......");
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Order_details ("
                     + "order_id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY, "
@@ -241,5 +228,6 @@ public class create_db {
         catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Order Details Table: " + ex);
         }
+        con.close();
     }
 }
