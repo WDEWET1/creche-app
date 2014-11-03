@@ -5,12 +5,11 @@
  */
 package com.wesley.creche.client.desktop;
 
-import com.wesley.creche.app.factory.ChildFactory;
 import com.wesley.creche.db.create_db;
-import com.wesley.creche.domain.Administration.Child;
 import com.wesley.creche.services.ChildService;
+import com.wesley.creche.services.DetermineGrade;
+import java.awt.Color;
 import java.awt.Component;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,6 +90,9 @@ public class RegForm extends javax.swing.JFrame {
         jTextField12 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,7 +113,7 @@ public class RegForm extends javax.swing.JFrame {
         jLabel5.setText("ID number");
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jLabel6.setText("Date Of Birth (Eg: 12 | 02 | 2012)");
+        jLabel6.setText("Date Of Birth (Eg: 2012 - 03 - 18)");
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel9.setText("Medical condition/s");
@@ -160,26 +162,17 @@ public class RegForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField7))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel8)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel9)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jCheckBox2)
-                                .addComponent(jCheckBox1))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -189,7 +182,17 @@ public class RegForm extends javax.swing.JFrame {
                             .addComponent(jTextField5)
                             .addComponent(jTextField6)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel9)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCheckBox2)
+                                    .addComponent(jCheckBox1)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 21, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -316,7 +319,7 @@ public class RegForm extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -399,6 +402,16 @@ public class RegForm extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel1.setText("Registration Form");
+
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 0, 0));
+
+        jLabel22.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel22.setText("...");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -407,33 +420,46 @@ public class RegForm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(9, 9, 9)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)))
                 .addContainerGap())
         );
 
@@ -489,7 +515,13 @@ public class RegForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-        handleChildData();
+        try {
+            handleChildData();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RegForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         handleParentData();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -527,7 +559,7 @@ public class RegForm extends javax.swing.JFrame {
                 RegForm r = new RegForm();
                 r.setDefaultCloseOperation(r.EXIT_ON_CLOSE);
                 r.setLocationRelativeTo(null);
-                
+
                 create_db db = new create_db();
                 try {
                     db.create_db();
@@ -543,6 +575,7 @@ public class RegForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -556,10 +589,12 @@ public class RegForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -586,46 +621,108 @@ public class RegForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
-    private void handleChildData() {
-        
-        String name = null;
-        String lastName = null;
-        String id = null;
-        int year = 0;
-        int month = 0;
-        int day = 0;
-        String medicalConditions = null;
-        Date dob = null;
-       
-        
-        name = jTextField5.getText();
-        lastName = jTextField6.getText();
-        id = jTextField7.getText();
-        
-        //day = Integer.parseInt(jTextField8.getText());
-        //month = Integer.parseInt(jTextField19.getText());
-        //year = Integer.parseInt(jTextField20.getText());
-        
-        medicalConditions = jTextArea1.getText();
-        
-        
-        Child c = ChildFactory.getChild(name, lastName, id, medicalConditions, dob);
-        
+    private void handleChildData() throws ClassNotFoundException, SQLException {
        
         ChildService cs = new ChildService();
-        try {
-            cs.insertChildData(name, lastName, id, medicalConditions, dob);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(RegForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        DetermineGrade dg = new DetermineGrade();
         
-        jTextField5.setText("");
-        jTextField6.setText("");
-        jTextField7.setText("");
-        jTextField8.setText("");
+        //GET CHILD DATA
+        String name = jTextField5.getText();
+        String lastName = jTextField6.getText();
+        String id = jTextField7.getText();
+        String medicalConditions = jTextArea1.getText();
+        
+        String year = jTextField8.getText();
+        String month = jTextField19.getText();
+        String day = jTextField20.getText();
+        String dob = year+"-"+month+"-"+day;
+        String grade = dg.getGrade(year);
+        
+        //GET FATHER DATA
+        String fatherName = jTextField9.getText();
+        String fatherLastName = jTextField10.getText();
+        String fatherID = jTextField11.getText();
+        String fatherOccupation = jTextField12.getText();
+        String fatherContact = jTextField13.getText();
+        
+        //GET MOTHER DATA
+        String motherName = jTextField14.getText();
+        String motherLastName = jTextField15.getText();
+        String motherID = jTextField16.getText();
+        String motherOccupation = jTextField17.getText();
+        String motherContact = jTextField18.getText();
+        
+        
+        //VALIDATION METHODS
+        boolean fieldsNotEmpty = validateFieldsNotEmpty();
+        boolean dobValidation = validateDob();
+        boolean parentValidation = validateParentFields();
+        boolean numericValidation = validateNumericFields();
+
+        if(fieldsNotEmpty){
+            
+            if(dobValidation){
+                
+                if(parentValidation){
+                    
+                    if(numericValidation){
+                    
+                        System.out.println("*********--------> $$$ SUCCESS $$$ <-------*********");   
+                        cs.insertChildData(name, lastName, id, medicalConditions, dob, grade);
+                        jLabel22.setText("Success");
+                        jLabel22.setForeground(Color.green);
+                    
+                    }else{
+                        jLabel22.setText("Fields that require digits only contain characters, Please re-enter.");
+                        jLabel22.setForeground(Color.red);
+                    }
+                }else{
+                    jLabel22.setText("Some parent fields are empty, please fill in all fields.");
+                    jLabel22.setForeground(Color.red);
+                }
+            }else{
+                jLabel22.setText("Date values are not valid, Please re-enter.");
+                jLabel22.setForeground(Color.red);
+            }
+        }else{
+            jLabel22.setText("Some fields are empty, please fill in all fields.");
+            jLabel22.setForeground(Color.red);
+        }
     }
 
     private void handleParentData() {
         //handle parent data
+        
+    }
+
+    private boolean containsOnlyNumbers(String str) {
+        for(int i=0; i<str.length(); i++){
+            if(!Character.isDigit(str.charAt(i)));
+            return false;
+        }
+        return true;
+    }
+
+    private boolean validateFieldsNotEmpty() {
+
+        return (!jTextField5.getText().isEmpty() && !jTextField6.getText().isEmpty() && !jTextField7.getText().isEmpty() && !jTextField8.getText().isEmpty() && !jTextField19.getText().isEmpty() && !jTextField20.getText().isEmpty() && !jTextArea1.getText().isEmpty());
+    }
+
+    private boolean validateDob() {
+
+        return true;
+    }
+
+    private boolean validateParentFields() {
+        
+      //  if(jCheckBox1.isSelected() && jCheckBox1.isSelected()){
+            
+      //  }
+        return true;
+    }
+
+    private boolean validateNumericFields() {
+        
+        return true;
     }
 }

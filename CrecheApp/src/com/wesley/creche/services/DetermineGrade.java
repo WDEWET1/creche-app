@@ -5,22 +5,14 @@
  */
 package com.wesley.creche.services;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 /**
  *
  * @author Wesleyjohn
  */
-public class DetermineClassGroup {
-    
-    public String getGrade(Date dob){
+public class DetermineGrade {
+
+    public String getGrade(String year) {
         String grade = null;
-        
-        GregorianCalendar c = new GregorianCalendar();
-        
-        
         return grade;
     }
 }
