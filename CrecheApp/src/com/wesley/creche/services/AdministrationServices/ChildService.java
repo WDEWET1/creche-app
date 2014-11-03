@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wesley.creche.services;
+package com.wesley.creche.services.AdministrationServices;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
