@@ -17,32 +17,30 @@ import java.util.Date;
  */
 public class ChildService {
     
-    public void insertChildData(String name, String lastName, String id1, String medical, Date d) throws ClassNotFoundException, SQLException{
-        
+    public void insertChildData(String name, String lastName, String id1, String medical, String dob, String grade) throws ClassNotFoundException, SQLException{
+
         String driverName = "com.mysql.jdbc.Driver";
         Class.forName(driverName);
-
         String serverName = "localhost";
         String mydatabase = "creche";
         String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
-
         String username = "root";
         String password = "";
-
-        System.out.println("about to send to database"+name+lastName);
-        int id = Integer.parseInt(id1);
-        
         Connection connection = DriverManager.getConnection(url, username, password);
         
-        PreparedStatement stmt = connection.prepareStatement("INSERT INTO child (name, last_name, id_num, med_con) VALUES(?,?,?,?)");
+        System.out.println("ABOUT TO SEND TO DATABASE  ----> "+name+" "+lastName);
+        
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO child (name, last_name, id_num, med_con, dob, grade) VALUES(?,?,?,?,?,?)");
         stmt.setString(1, name);
         stmt.setString(2, lastName);
         stmt.setString(3, id1);
         stmt.setString(4, medical);
+        stmt.setString(5, dob);
+        stmt.setString(6, grade);
         stmt.executeUpdate();
         
         stmt.close();
         
-        System.out.println("sent to database");
+        System.out.println("INSERTED INTO DATABASE SUCESSFULLY.");
     }
 }

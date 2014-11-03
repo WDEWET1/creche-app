@@ -13,6 +13,7 @@ import java.util.Date;
  * @author Wesleyjohn
  */
 public class ChildFactory {
+    
     public static Child getChild(String name, String lastName, String idNumber, String medical, Date d) {
         
         Child child = new Child();
