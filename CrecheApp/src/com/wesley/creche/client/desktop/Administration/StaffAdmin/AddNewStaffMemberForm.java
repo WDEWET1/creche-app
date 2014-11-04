@@ -5,6 +5,8 @@
  */
 package com.wesley.creche.client.desktop.Administration.StaffAdmin;
 
+import com.wesley.creche.client.desktop.Styles.Styles;
+
 /**
  *
  * @author Wesleyjohn
@@ -13,8 +15,13 @@ public class AddNewStaffMemberForm extends javax.swing.JFrame {
     /**
      * Creates new form AddNewStaffMemberForm
      */
+    Styles style = new Styles();
     public AddNewStaffMemberForm() {
+        super("Add new staff");
         initComponents();
+        style.setFrameStyles(this);
+        style.setButtonStyle(jButton1);
+        style.setButtonStyle(jButton2);
     }
 
     /**

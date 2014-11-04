@@ -5,8 +5,10 @@
  */
 package com.wesley.creche.client.desktop.Administration;
 
+import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.client.desktop.Administration.ChildAdmin.RegistrationForm;
 import com.wesley.creche.client.desktop.Administration.StaffAdmin.StaffForm;
+import com.wesley.creche.client.desktop.MainFrame;
 
 /**
  *
@@ -17,8 +19,17 @@ public class AdministrationForm extends javax.swing.JFrame {
     /**
      * Creates new form ViewChildDetails
      */
+    Styles style = new Styles();
+    
     public AdministrationForm() {
+        super("Registration");
         initComponents();
+        style.setFrameStyles(this);
+        style.setButtonStyle(jButton1);
+        style.setButtonStyle(jButton2);
+        style.setButtonStyle(jButton3);
+        style.setButtonStyle(jButton4);
+        
     }
 
     /**
@@ -64,7 +75,12 @@ public class AdministrationForm extends javax.swing.JFrame {
         jButton3.setText("Child");
 
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jButton4.setText("Back");
+        jButton4.setText("<< Back");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -118,7 +134,7 @@ public class AdministrationForm extends javax.swing.JFrame {
         this.setVisible(false);
         RegistrationForm r = new RegistrationForm();
         r.setVisible(true);
-        r.setDefaultCloseOperation(r.EXIT_ON_CLOSE);
+        //r.setDefaultCloseOperation(r.EXIT_ON_CLOSE);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -126,46 +142,22 @@ public class AdministrationForm extends javax.swing.JFrame {
         this.setVisible(false);
         StaffForm sf = new StaffForm();
         sf.setVisible(true);
-        sf.setDefaultCloseOperation(sf.EXIT_ON_CLOSE);
+        //sf.setDefaultCloseOperation(sf.EXIT_ON_CLOSE);
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        MainFrame main = new MainFrame();
+        main.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdministrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdministrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdministrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdministrationForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdministrationForm().setVisible(true);
-                
-            }
-        });
-    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
