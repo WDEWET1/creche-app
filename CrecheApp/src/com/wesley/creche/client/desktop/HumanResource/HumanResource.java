@@ -21,7 +21,7 @@ public class HumanResource extends javax.swing.JFrame {
      */
     final Styles styles = new Styles();
     public HumanResource() {
-        super("Accounting");
+        super("Human Resource");
         initComponents();
         styles.setFrameStyles(this);
         styles.setButtonStyle(jButton1);
