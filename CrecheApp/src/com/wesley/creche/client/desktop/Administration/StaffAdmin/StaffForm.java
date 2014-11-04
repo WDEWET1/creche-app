@@ -6,6 +6,7 @@
 package com.wesley.creche.client.desktop.Administration.StaffAdmin;
 
 import com.wesley.creche.client.desktop.Administration.AdministrationForm;
+import com.wesley.creche.client.desktop.Styles.Styles;
 
 /**
  *
@@ -16,8 +17,11 @@ public class StaffForm extends javax.swing.JFrame {
     /**
      * Creates new form StaffForm
      */
+    Styles style = new Styles();
     public StaffForm() {
+        super("Staff Administration");
         initComponents();
+        
     }
 
     /**
