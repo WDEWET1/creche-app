@@ -8,6 +8,7 @@ package com.wesley.creche.client.desktop.Styles;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -50,9 +51,11 @@ public class Styles {
         frame.setLocationRelativeTo(null);
         frame.getContentPane().setBackground(Color.getHSBColor(120, 99, 90));
         frame.setBackground(Color.yellow);
-        //frame.size();
-        //204,255,204    
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("images/babyLogo3.png")));
     }
+    
+    
+    
     
     public void setPanelStyles(JPanel panel){
         panel.setBackground(Color.WHITE);
