@@ -387,7 +387,7 @@ public class SQLQueries {
     }
     
     public String getChildSurnameByName(String cName) throws SQLException, ClassNotFoundException {
-        String name = "";
+        String lastName = "";
         
         try {
             Connection con = getTheConnection();
@@ -397,7 +397,7 @@ public class SQLQueries {
 
             while (rs.next())
             {
-                name = (rs.getString("name"));
+                lastName = (rs.getString("last_name"));
             }
             rs.close();
             con.close();
@@ -405,11 +405,11 @@ public class SQLQueries {
         catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
         }
-        return name;
+        return lastName;
     }
     
     public String getChildSurnameByChildID(int childID) throws SQLException, ClassNotFoundException {
-        String name = "";
+        String lastName = "";
         
         try {
             Connection con = getTheConnection();
@@ -419,7 +419,7 @@ public class SQLQueries {
 
             while (rs.next())
             {
-                name = (rs.getString("name"));
+                lastName = (rs.getString("last_name"));
             }
             rs.close();
             con.close();
@@ -427,7 +427,7 @@ public class SQLQueries {
         catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
         }
-        return name;
+        return lastName;
     }
     
     public Date getChildDOBByChildID(int childID) throws SQLException, ClassNotFoundException {
@@ -441,7 +441,7 @@ public class SQLQueries {
 
             while (rs.next())
             {
-                dob = (rs.getDate("name"));
+                dob = (rs.getDate("dob"));
             }
             rs.close();
             con.close();
