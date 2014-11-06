@@ -73,7 +73,6 @@ public class Maintenance extends javax.swing.JFrame {
         MainFrame main = new MainFrame();
         main.setVisible(true);
         this.setVisible(false);
-        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

@@ -29,7 +29,6 @@ public class Styles {
         Font font = new Font("century gothic", 1, 14);
         button.setFont(font);
         button.setBackground(Color.WHITE);
-        //button.setText("<< Back");
         button.setForeground(Color.BLACK);
         button.setSize(73, 23);
                
