@@ -6,7 +6,7 @@
 
 package com.wesley.creche.client.desktop;
 
-import com.wesley.creche.client.desktop.Validation.AreYouSure;
+import com.wesley.creche.client.desktop.Validation.Validationframes.AreYouSure;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.client.desktop.Administration.AdministrationForm;
 import com.wesley.creche.client.desktop.Finance.Finance;
