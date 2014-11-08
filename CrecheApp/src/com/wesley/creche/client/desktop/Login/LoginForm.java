@@ -8,6 +8,7 @@ package com.wesley.creche.client.desktop.Login;
 
 import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
+import com.wesley.creche.services.LoginService.LoginService;
 
 /**
  *
@@ -55,6 +56,11 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jButton2.setText("Login");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Username");
 
@@ -116,6 +122,17 @@ public class LoginForm extends javax.swing.JFrame {
         main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String uName = jTextField1.getText();
+        String pWord = jPasswordField1.getText();
+        
+        LoginService log = new LoginService();
+        boolean login = log.getLogin(uName, pWord);
+        
+        jLabel3.setText(""+login);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
  
 
