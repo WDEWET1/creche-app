@@ -19,8 +19,8 @@ public class AreYouSure extends javax.swing.JFrame {
      * Creates new form AreYouSure
      */
     public AreYouSure() {
+        super("Close application?");
         initComponents();
-        
         styles.setFrameStyles(this);
         styles.setMainScreenButtonStyle(jButton1);
         styles.setMainScreenButtonStyle(jButton2);
