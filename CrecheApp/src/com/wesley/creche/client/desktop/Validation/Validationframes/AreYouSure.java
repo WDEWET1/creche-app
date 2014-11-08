@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wesley.creche.client.desktop.Validation;
+package com.wesley.creche.client.desktop.Validation.Validationframes;
 
 import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
