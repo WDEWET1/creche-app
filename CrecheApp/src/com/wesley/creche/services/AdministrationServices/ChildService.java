@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class ChildService {
     
-    public void insertChildData(String name, String lastName, String id1, String medical, String dob, String grade) throws ClassNotFoundException, SQLException{
+    public boolean insertChildData(String name, String lastName, String id1, String medical, String dob, String grade) throws ClassNotFoundException, SQLException{
 
         String driverName = "com.mysql.jdbc.Driver";
         Class.forName(driverName);
@@ -42,5 +42,6 @@ public class ChildService {
         stmt.close();
         
         System.out.println("INSERTED INTO DATABASE SUCESSFULLY.");
+        return true;
     }
 }
