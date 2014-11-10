@@ -623,9 +623,11 @@ public class RegistrationForm extends javax.swing.JFrame {
                     if(numericValidation){
                     
                         System.out.println("*********--------> $$$ SUCCESS $$$ <-------*********");   
-                        cs.insertChildData(name, lastName, id, medicalConditions, dob, grade);
+                        boolean clear = cs.insertChildData(name, lastName, id, medicalConditions, dob, grade);
                         jLabel22.setText("Success");
                         jLabel22.setForeground(Color.green);
+                        
+                        //CLEAR ALL FIELDS
                     
                     }else{
                         jLabel22.setText("Fields that require digits only contain characters, Please re-enter.");
