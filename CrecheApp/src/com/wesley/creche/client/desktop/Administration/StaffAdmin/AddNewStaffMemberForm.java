@@ -6,6 +6,9 @@
 package com.wesley.creche.client.desktop.Administration.StaffAdmin;
 
 import com.wesley.creche.client.desktop.Styles.Styles;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -79,7 +82,7 @@ public class AddNewStaffMemberForm extends javax.swing.JFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jButton1.setText("Add");
+        jButton1.setText("Next");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -349,9 +352,13 @@ public class AddNewStaffMemberForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        StaffForm sf = new StaffForm();
-        sf.setVisible(true);
+        try {
+            UpdateStaff s = new UpdateStaff();
+            this.setVisible(false);
+            s.setVisible(true);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddNewStaffMemberForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

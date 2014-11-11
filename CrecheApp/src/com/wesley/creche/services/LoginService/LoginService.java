@@ -15,8 +15,8 @@ public class LoginService {
     public boolean getLogin(String uName, String pWord){
               
         //GET USERNAME AND PASSWORD FROM DATABASE
-        String databaseUserName = null;
-        String databasePassword = null;
+        String databaseUserName = "a";
+        String databasePassword = "q";
         
         return uName.equals(databaseUserName) && pWord.equals(databasePassword);
     } 
