@@ -16,7 +16,9 @@ import java.sql.Statement;
  *
  * @author KarstensC
  */
-public class SQLQueries {
+public class SQLQueries{ 
+
+private int childID;
     
     //Method that creates a connection to the MySQL DB... 
     private static Connection getTheConnection() throws SQLException, ClassNotFoundException {
@@ -224,26 +226,34 @@ public class SQLQueries {
     }
     
     //Insert record into Parents Table....
-    public void insertIntoParent(String fatherName, String fatherLastName, String fatherIDNumber, 
-       String fatherOccupation, String motherName, String motherLastName, String motherIDNumber,
-       String motherOccupation, int childID) throws SQLException, ClassNotFoundException {
-       try {
+    public void insertIntoParent(String name, String fatherName, String fatherLastName, String fatherIDNumber, 
+       String fatherOccupation, String fatherContact, String motherName, String motherLastName, String motherIDNumber,
+       String motherOccupation, String motherContact) throws SQLException, ClassNotFoundException {
+       
         Connection con = getTheConnection();
-        Statement stmt = con.createStatement();
+        Statement stm = con.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT child_id FROM child WHERE name = "+name);
+        while(rs.isLast()){
+            childID = Integer.parseInt(rs.getString(1));
+        }
+        try {
+        Connection conn = getTheConnection();
+        Statement stmt = conn.createStatement();
         stmt.executeUpdate("INSERT INTO parent ("
-                + "father_name, father_last_name, father_ID_no, father_occupation,"
-                + "mother_name, mother_last_name, mother_ID_no, mother_occupation, "
-                + "child_id) "
+                + "father_name, father_last_name, father_ID_no, father_occupation, father_contact,"
+                + "mother_name, mother_last_name, mother_ID_no, mother_occupation, mother_contact, child_id)"
                 + "VALUES ("
                 + "'" + fatherName + "', "
                 + "'" + fatherLastName + "', "
                 + "'" + fatherIDNumber + "', "
                 + "'" + fatherOccupation + "', "
+                + "'" + fatherContact + "', "
                 + "'" + motherName + "', "
                 + "'" + motherLastName + "', "
                 + "'" + motherIDNumber + "', "
                 + "'" + motherOccupation + "', "
-                + childID
+                + "'" + motherContact + "',"
+                + "'" + childID + "'"
         + ")");
         con.close();
         }

@@ -106,10 +106,12 @@ public class create_db {
                     + "father_last_name VARCHAR(100), "
                     + "father_ID_no VARCHAR(50), "
                     + "father_occupation VARCHAR(100), "
+                    + "father_contact VARCHAR(100), "
                     + "mother_name VARCHAR(100), "
                     + "mother_last_name VARCHAR(100), "
                     + "mother_ID_no VARCHAR(50), "
                     + "mother_occupation VARCHAR(100), "
+                    + "mother_contact VARCHAR(100), "
                     + "child_id INT(10) NOT NULL"
             + ")");
         }

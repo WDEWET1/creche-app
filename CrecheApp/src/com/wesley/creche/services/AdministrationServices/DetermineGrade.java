@@ -12,7 +12,7 @@ package com.wesley.creche.services.AdministrationServices;
 public class DetermineGrade {
 
     public String getGrade(String year) {
-        String grade = null;
+        String grade = "1";
         return grade;
     }
 }

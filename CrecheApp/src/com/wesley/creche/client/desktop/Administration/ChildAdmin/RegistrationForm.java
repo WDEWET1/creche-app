@@ -5,15 +5,16 @@
  */
 package com.wesley.creche.client.desktop.Administration.ChildAdmin;
 
+import com.wesley.creche.app.factory.ChildFactory;
 import com.wesley.creche.client.desktop.Administration.AdministrationForm;
 import com.wesley.creche.services.AdministrationServices.ChildService;
 import com.wesley.creche.services.AdministrationServices.DetermineGrade;
-import java.awt.Color;
 import java.awt.Component;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.wesley.creche.client.desktop.Styles.Styles;
+import com.wesley.creche.domain.Administration.Child;
 
 /**
  *
@@ -505,14 +506,50 @@ public class RegistrationForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
+        
+        //READ THE FOLLOWING CAREFULLY AND GO TO THE METHODS AND CLASSES
+        //THAT IS CALLED FROM THIS METHOD
+        
+        //THE FACTORY CLASS IS IN THE APP PACKAGE
+        //THE SERVICE IM USING, FOR NOW, IS IN THE SERVICES/ADMINISTRATION SERVICES PACKAGES
+        
+
+        Child child;
+        DetermineGrade dg = new DetermineGrade();
+        ChildFactory factory = new ChildFactory();
+        ChildService cs = new ChildService();
+        
+        //GET ALL DATA FROM USER, PUT THEM IN VARIABLES
+        String name = jTextField5.getText();
+        String lastName = jTextField6.getText();
+        String id = jTextField7.getText();
+        String medicalConditions = jTextArea1.getText();
+        
+        String year = jTextField8.getText();
+        String month = jTextField19.getText();
+        String day = jTextField20.getText();
+        String dob = year+"-"+month+"-"+day;
+        String grade = dg.getGrade(year);
+        int childID = 0;
+        
+        
+        //HERE THE DATA SHOULD BE VALIDATED OR SENT TO A METHOD TO BE VALIDATED
+        
+        
+        
+        //SEND VARIABLES TO CHILD FACTORY, CHILD FACTORY WILL PUT THEM IN THE CHILD MODEL/ DOMAIN
+        child = factory.getChild(childID, name, lastName, id, medicalConditions, grade, dob);
+        
+        //ONCE THEY ARE IN THE MODEL, CALL THE SERVICE TO PUT THEM IN THE DATABASE.
+        //WE DONT HAVE TO SEND THE SERVICE THE VARIABLE BECAUSE THEY ARE IN THE MODEL.
+        //SO FROM THE SERVICE, WE CAN GET THE VARIABLES STRAIGHT OUT OF THE MODEL.
+        //WE ONLY SEND THE OBJECT TO THE SERVICE, SO THAT THE SERVICE KNOWS WHICH CHILD 
+        //OBJECT WE ARE REFERRING TO.
         try {
-            handleChildData();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+            cs.insertChildData(child);
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        handleParentData();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -576,110 +613,5 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
-    private void handleChildData() throws ClassNotFoundException, SQLException {
-       
-        ChildService cs = new ChildService();
-        DetermineGrade dg = new DetermineGrade();
-        
-        //GET CHILD DATA
-        String name = jTextField5.getText();
-        String lastName = jTextField6.getText();
-        String id = jTextField7.getText();
-        String medicalConditions = jTextArea1.getText();
-        
-        String year = jTextField8.getText();
-        String month = jTextField19.getText();
-        String day = jTextField20.getText();
-        String dob = year+"-"+month+"-"+day;
-        String grade = dg.getGrade(year);
-        
-        //GET FATHER DATA
-        String fatherName = jTextField9.getText();
-        String fatherLastName = jTextField10.getText();
-        String fatherID = jTextField11.getText();
-        String fatherOccupation = jTextField12.getText();
-        String fatherContact = jTextField13.getText();
-        
-        //GET MOTHER DATA
-        String motherName = jTextField14.getText();
-        String motherLastName = jTextField15.getText();
-        String motherID = jTextField16.getText();
-        String motherOccupation = jTextField17.getText();
-        String motherContact = jTextField18.getText();
-        
-        
-        //VALIDATION METHODS
-        boolean fieldsNotEmpty = validateFieldsNotEmpty();
-        boolean dobValidation = validateDob();
-        boolean parentValidation = validateParentFields();
-        boolean numericValidation = validateNumericFields();
-
-        if(fieldsNotEmpty){
-            
-            if(dobValidation){
-                
-                if(parentValidation){
-                    
-                    if(numericValidation){
-                    
-                        System.out.println("*********--------> $$$ SUCCESS $$$ <-------*********");   
-                        boolean clear = cs.insertChildData(name, lastName, id, medicalConditions, dob, grade);
-                        jLabel22.setText("Success");
-                        jLabel22.setForeground(Color.green);
-                        
-                        //CLEAR ALL FIELDS
-                    
-                    }else{
-                        jLabel22.setText("Fields that require digits only contain characters, Please re-enter.");
-                        jLabel22.setForeground(Color.red);
-                    }
-                }else{
-                    jLabel22.setText("Some parent fields are empty, please fill in all fields.");
-                    jLabel22.setForeground(Color.red);
-                }
-            }else{
-                jLabel22.setText("Date values are not valid, Please re-enter.");
-                jLabel22.setForeground(Color.red);
-            }
-        }else{
-            jLabel22.setText("Some fields are empty, please fill in all fields.");
-            jLabel22.setForeground(Color.red);
-        }
-    }
-
-    private void handleParentData() {
-        //handle parent data
-        
-    }
-
-    private boolean containsOnlyNumbers(String str) {
-        for(int i=0; i<str.length(); i++){
-            if(!Character.isDigit(str.charAt(i)));
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validateFieldsNotEmpty() {
-
-        return (!jTextField5.getText().isEmpty() && !jTextField6.getText().isEmpty() && !jTextField7.getText().isEmpty() && !jTextField8.getText().isEmpty() && !jTextField19.getText().isEmpty() && !jTextField20.getText().isEmpty() && !jTextArea1.getText().isEmpty());
-    }
-
-    private boolean validateDob() {
-
-        return true;
-    }
-
-    private boolean validateParentFields() {
-        
-      //  if(jCheckBox1.isSelected() && jCheckBox1.isSelected()){
-            
-      //  }
-        return true;
-    }
-
-    private boolean validateNumericFields() {
-        
-        return true;
-    }
+    
 }
