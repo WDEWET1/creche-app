@@ -14,6 +14,7 @@ import com.wesley.creche.client.desktop.Finance.Finance;
 import com.wesley.creche.client.desktop.HumanResource.HumanResource;
 import com.wesley.creche.client.desktop.Login.LoginForm;
 import com.wesley.creche.client.desktop.Maintenance.Maintenance;
+import com.wesley.creche.db.create_db;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +34,14 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame(){
         super("Childcare Management System");
         initComponents();
+        
+        //CREATE DATABASE
+        create_db db = new create_db();
+        try {
+            db.create_db();
+        } catch (Exception ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         styles.setFrameStyles(this);
         styles.setMainScreenButtonStyle(jButton1);

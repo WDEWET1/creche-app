@@ -5,8 +5,6 @@
  */
 package com.wesley.creche.domain.Administration;
 
-import java.util.Date;
-
 /**
  *
  * @author Wesleyjohn
@@ -14,14 +12,16 @@ import java.util.Date;
 public class Child {
     private String name;
     private String lastName;
-    private String IDNumber;
-
-    public Child() {
-        
-    }
+    private String idNumber;
+    private String grade;
+    private String medicalConditions;
+    private String dob;
 
     public String getName() {
         return name;
+    }
+
+    public Child() {
     }
 
     public void setName(String name) {
@@ -36,20 +36,20 @@ public class Child {
         this.lastName = lastName;
     }
 
-    public String getIDNumber() {
-        return IDNumber;
+    public String getIdNumber() {
+        return idNumber;
     }
 
-    public void setIDNumber(String IDNumber) {
-        this.IDNumber = IDNumber;
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
     }
 
-    public String getChildID() {
-        return childID;
+    public String getGrade() {
+        return grade;
     }
 
-    public void setChildID(String childID) {
-        this.childID = childID;
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     public String getMedicalConditions() {
@@ -60,23 +60,30 @@ public class Child {
         this.medicalConditions = medicalConditions;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
-    private String childID;
-    private String medicalConditions;
-    private Date dob;
 
-    public Child(String name, String lastName, String IDNumber, String childID, String medicalConditions, Date dob) {
+    public int getChildID() {
+        return childID;
+    }
+
+    public void setChildID(int childID) {
+        this.childID = childID;
+    }
+
+    public Child(String name, String lastName, String idNumber, String grade, String medicalConditions, String dob, int childID) {
         this.name = name;
         this.lastName = lastName;
-        this.IDNumber = IDNumber;
-        this.childID = childID;
+        this.idNumber = idNumber;
+        this.grade = grade;
         this.medicalConditions = medicalConditions;
         this.dob = dob;
+        this.childID = childID;
     }
+    private int childID;
 }
