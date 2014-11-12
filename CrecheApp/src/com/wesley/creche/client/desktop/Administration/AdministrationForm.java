@@ -7,6 +7,7 @@ package com.wesley.creche.client.desktop.Administration;
 
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.client.desktop.Administration.ChildAdmin.RegistrationForm;
+import com.wesley.creche.client.desktop.Administration.Jobs.JobForm;
 import com.wesley.creche.client.desktop.Administration.StaffAdmin.UpdateStaff;
 import com.wesley.creche.client.desktop.MainFrame;
 import java.sql.SQLException;
@@ -85,6 +86,11 @@ public class AdministrationForm extends javax.swing.JFrame {
         });
 
         jButton6.setText("Jobs");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,6 +172,12 @@ public class AdministrationForm extends javax.swing.JFrame {
         main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        JobForm j = new JobForm();
+        this.setVisible(false);
+        j.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
