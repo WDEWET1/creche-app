@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wesley.creche.db;
+package com.wesley.creche.services;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -28,7 +28,7 @@ public class SQLQueries {
         String url = "jdbc:mysql://" + serverName + "/" + mydatabase;
 
         String username = "root";
-        String password = "123456";
+        String password = "";
         Connection con = DriverManager.getConnection(url, username, password);
         return con;
     }
