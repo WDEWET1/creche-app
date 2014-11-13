@@ -5,9 +5,11 @@
  */
 package com.wesley.creche.client.desktop.reports;
 
+import com.itextpdf.text.DocumentException;
 import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.services.pdf.createPdf;
+import java.io.IOException;
 
 /**
  *
@@ -91,11 +93,9 @@ public class Reports extends javax.swing.JFrame {
         try {
             test.writePdf();
         }
-        catch (Exception ex) {
+        catch (DocumentException | IOException ex) {
             
         }
-            
-        
     }//GEN-LAST:event_btnFinanceActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

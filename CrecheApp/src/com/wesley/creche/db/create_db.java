@@ -58,7 +58,7 @@ public class create_db {
                     + "ph_number VARCHAR(100), "
                     + "address VARCHAR(100), "
                     + "hire_date DATE, "
-                    + "salary NUMERIC(15,2)"
+                    + "acc_number VARCHAR(50)"
             + ")");
         }
         catch (SQLException ex){
