@@ -13,7 +13,7 @@ import com.wesley.creche.client.desktop.Emergency.EmergencyForm;
 import com.wesley.creche.client.desktop.Finance.Finance;
 import com.wesley.creche.client.desktop.HumanResource.HumanResource;
 import com.wesley.creche.client.desktop.Login.LoginForm;
-import com.wesley.creche.client.desktop.Maintenance.Maintenance;
+import com.wesley.creche.client.desktop.reports.Reports;
 import com.wesley.creche.db.create_db;
 import java.awt.Desktop;
 import java.io.File;
@@ -141,7 +141,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Maintenance");
+        jButton2.setText("Reports");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -216,8 +216,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Maintenance maintenance = new Maintenance();
-        maintenance.setVisible(true);
+        Reports reports = new Reports();
+        reports.setVisible(true);
         this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
