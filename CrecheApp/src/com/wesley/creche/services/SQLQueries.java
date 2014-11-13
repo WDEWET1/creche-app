@@ -5,12 +5,14 @@
  */
 package com.wesley.creche.services;
 
+import com.wesley.creche.domain.Administration.Employee;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -121,24 +123,25 @@ private int childID;
     }
     
     //Insert record into Employees Table....
-    public void insertIntoEmployees(int jobID, String name, String lastName, 
-       String email, String phoneNo, String address, String hireDate,
-       double salary) throws SQLException, ClassNotFoundException {
+    public void insertIntoEmployees(Employee e, String jobTitle) throws SQLException, ClassNotFoundException {
+        
+        int jobID = getJobID(jobTitle);
+        
        try {
         Connection con = getTheConnection();
         Statement stmt = con.createStatement();
         stmt.executeUpdate("INSERT INTO employees ("
                 + "job_id, name, last_name, email, ph_number, address, hire_date, "
-                + "salary) "
+                + "acc_number) "
                 + "VALUES ("
                 + jobID + ", "
-                + "'" + name + "', "
-                + "'" + lastName + "', "
-                + "'" + email + "', "
-                + "'" + phoneNo + "', "
-                + "'" + address + "', "
-                + "'" + hireDate + "', "
-                + salary
+                + "'" + e.getName() + "', "
+                + "'" + e.getLastName() + "', "
+                + "'" + e.getEmail() + "', "
+                + "'" + e.getContact() + "', "
+                + "'" + e.getAddress() + "', "
+                + "'" + e.getHireDate() + "', "
+                + e.getAccountNumber()
         + ")");
         con.close();
         }
@@ -460,5 +463,52 @@ private int childID;
             System.out.println(ex);
         }
         return dob;
+    }
+    
+    public ArrayList getJobs() throws SQLException, ClassNotFoundException {
+        
+        ArrayList jobs = new ArrayList();
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT job_title FROM jobs");
+            int i = 0;
+            while (rs.next())
+            {
+               jobs.add(rs.getString(1)); 
+                       
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return jobs;
+    }
+    
+    public int getJobID(String jobTitle) throws SQLException, ClassNotFoundException {
+
+        int jobID = 0;
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT job_id FROM jobs WHERE job_title = " + "'"+jobTitle+"'");
+
+            while (rs.next())
+            {
+                jobID = rs.getInt(1);
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return jobID;
     }
 }
