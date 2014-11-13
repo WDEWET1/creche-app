@@ -15,9 +15,12 @@ public class LoginService {
     public boolean getLogin(String uName, String pWord){
               
         //GET USERNAME AND PASSWORD FROM DATABASE
-        String databaseUserName = "a";
-        String databasePassword = "q";
-        
-        return uName.equals(databaseUserName) && pWord.equals(databasePassword);
+
+        String databaseUserName = uName;
+        String databasePassword = pWord;
+
+        //return uName.equals(pWord);
+        //return true;
+        return (uName.equals(databaseUserName) && pWord.equals(databasePassword));
     } 
 }
