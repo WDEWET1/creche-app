@@ -125,6 +125,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        jLabel3.setText("");
         String uName = jTextField1.getText();
         String pWord = jPasswordField1.getText();
         
