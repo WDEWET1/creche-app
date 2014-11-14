@@ -23,10 +23,12 @@ public class Reports extends javax.swing.JFrame {
     
     final Styles styles = new Styles();
     public Reports() {
+        super("Reports");
         initComponents();
-        
         styles.setFrameStyles(this);
         styles.setMainScreenButtonStyle(btnFinance);
+        styles.setMainScreenButtonStyle(btnHR);
+        styles.setMainScreenButtonStyle(btnProgress);
         styles.setButtonStyle(btnExit);
         
     }
@@ -44,6 +46,8 @@ public class Reports extends javax.swing.JFrame {
 
         btnFinance = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        btnHR = new javax.swing.JButton();
+        btnProgress = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,25 +65,36 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
+        btnHR.setText("Human Resources");
+
+        btnProgress.setText("Progress Reports");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(btnFinance)
-                .addContainerGap(305, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnExit)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProgress)
+                    .addComponent(btnHR)
+                    .addComponent(btnFinance))
+                .addContainerGap(255, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(btnFinance)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnHR)
+                .addGap(18, 18, 18)
+                .addComponent(btnProgress)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(btnExit)
                 .addContainerGap())
         );
@@ -143,5 +158,7 @@ public class Reports extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnFinance;
+    private javax.swing.JButton btnHR;
+    private javax.swing.JButton btnProgress;
     // End of variables declaration//GEN-END:variables
 }
