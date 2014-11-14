@@ -9,6 +9,9 @@ import com.wesley.creche.domain.Administration.Employee;
 import com.wesley.creche.domain.Administration.Parents;
 import com.wesley.creche.domain.Administration.Progress;
 import com.wesley.creche.domain.Administration.User;
+import com.wesley.creche.services.LoginService.Encryption;
+import java.io.FileNotFoundException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -16,6 +19,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -672,21 +677,20 @@ private int childID;
 
   
     public boolean getUsernameAndPasswordFromDB(User user) throws SQLException, ClassNotFoundException {
-        
-        boolean check = false;
-        
+
         String dbUsername = null;
         String dbPassword = null;
         
         try {
         Connection con = getTheConnection();
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT username, password FROM user WHERE username = "+"'"+user.getUsername()+"'"
-        + ")");
+        ResultSet rs = stmt.executeQuery("SELECT username, password FROM user WHERE username = "+"'"+user.getUsername()+"'");
         
         while (rs.next()){
                 dbUsername = (rs.getString(1));
-                dbPassword = (rs.getString(1));
+                System.out.println("username - --------------------    "+dbUsername);
+                dbPassword = (rs.getString(2));
+                System.out.println("password - --------------------    "+dbPassword);
         }
         rs.close();
         con.close();

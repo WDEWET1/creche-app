@@ -135,6 +135,7 @@ public class LoginForm extends javax.swing.JFrame {
         User user;
         UserFactory uf = new UserFactory();
         SQLQueries s = new SQLQueries();
+        String encryptedPassword = null;
         
         jLabel3.setText("");
         String uName = jTextField1.getText();
@@ -142,11 +143,11 @@ public class LoginForm extends javax.swing.JFrame {
         
         Encryption e = new Encryption();
         try {
-            e.encrypt(pWord);
+            encryptedPassword = e.encrypt(pWord);
         } catch (NoSuchAlgorithmException | FileNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        user = uf.getUser(uName, pWord);
+        user = uf.getUser(uName, encryptedPassword);
         boolean check = false;
         try {
             check = s.getUsernameAndPasswordFromDB(user);
@@ -154,12 +155,11 @@ public class LoginForm extends javax.swing.JFrame {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if(check){
+        if(check == true){
             jLabel3.setText("true");
-        }else{
+        }else if(check == false){
             jLabel3.setText("false");
-        }
-            
+        }    
     }//GEN-LAST:event_jButton2ActionPerformed
 
  
