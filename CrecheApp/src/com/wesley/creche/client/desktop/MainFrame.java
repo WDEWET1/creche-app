@@ -42,7 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         styles.setFrameStyles(this);
         styles.setMainScreenButtonStyle(jButton1);
         styles.setMainScreenButtonStyle(jButton2);
@@ -57,6 +57,7 @@ public class MainFrame extends javax.swing.JFrame {
         //styles.setImage(jLabel3);
         styles.setTime(jLabel4);
 
+        this.setVisible(false);
     }
 
     /**
@@ -95,7 +96,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Login");
+        jButton6.setText("Logout");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -246,8 +247,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         LoginForm login = new LoginForm();
-        login.setVisible(true);
         this.setVisible(false);
+        login.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -300,8 +301,9 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
-                
+                new MainFrame().setVisible(false);
+                LoginForm login = new LoginForm();
+                login.setVisible(true);
             }
         });
     }
@@ -318,4 +320,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
+
 }
