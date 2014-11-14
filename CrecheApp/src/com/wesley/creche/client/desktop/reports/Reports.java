@@ -9,6 +9,7 @@ import com.itextpdf.text.DocumentException;
 import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.services.pdf.createPdf;
+import com.wesley.creche.client.desktop.financeReports.finReportsForm;
 import java.io.IOException;
 
 /**
@@ -58,7 +59,7 @@ public class Reports extends javax.swing.JFrame {
             }
         });
 
-        btnExit.setText("Exit");
+        btnExit.setText("Back");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
@@ -103,14 +104,24 @@ public class Reports extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinanceActionPerformed
-        createPdf test = new createPdf();
+        finReportsForm finReports = new finReportsForm();
+        finReports.setVisible(true);
+        this.setVisible(false);
+        
+        
+        
+        
+        
+        
+        
+        /*createPdf test = new createPdf();
         
         try {
             test.writePdf();
         }
         catch (DocumentException | IOException ex) {
             
-        }
+        }*/
     }//GEN-LAST:event_btnFinanceActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed

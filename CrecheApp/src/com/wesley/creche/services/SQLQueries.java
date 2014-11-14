@@ -511,4 +511,30 @@ private int childID;
         }
         return jobID;
     }
+    
+    public String getChildForFinReports() throws SQLException, ClassNotFoundException {
+
+        String childFirstName = "";
+        String childLastName = "";
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT name, last_name FROM child;");
+
+            while (rs.next())
+            {
+                childFirstName = rs.getString("name");
+                childLastName = rs.getString("last_name");
+                return childFirstName + " " + childLastName;
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return "";
+    }
 }
