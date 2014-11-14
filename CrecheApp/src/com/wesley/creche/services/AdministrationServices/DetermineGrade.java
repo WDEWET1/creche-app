@@ -12,7 +12,36 @@ package com.wesley.creche.services.AdministrationServices;
 public class DetermineGrade {
 
     public String getGrade(String year) {
-        String grade = "1";
+        
+        String grade = null;
+        
+        switch(year){
+            case "2007":
+                grade = "7";
+                break;
+            case "2008":
+                grade = "6";
+                break;
+            case "2009":
+                grade = "5";
+                break;
+            case "2010":
+                grade = "4";
+                break;
+            case "2011":
+                grade = "3";
+                break;
+            case "2012":
+                grade = "2";
+                break;
+            case "2013":
+                grade = "1";
+                break;
+            default: 
+                grade = "0";
+                break;     
+        }
+        
         return grade;
     }
 }

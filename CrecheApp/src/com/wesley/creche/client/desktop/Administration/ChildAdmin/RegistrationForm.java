@@ -6,6 +6,7 @@
 package com.wesley.creche.client.desktop.Administration.ChildAdmin;
 
 import com.wesley.creche.app.factory.ChildFactory;
+import com.wesley.creche.app.factory.ParentFactory;
 import com.wesley.creche.client.desktop.Administration.AdministrationForm;
 import com.wesley.creche.services.AdministrationServices.ChildService;
 import com.wesley.creche.services.AdministrationServices.DetermineGrade;
@@ -15,6 +16,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.domain.Administration.Child;
+import com.wesley.creche.domain.Administration.Parents;
+import com.wesley.creche.services.SQLQueries;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +26,7 @@ import com.wesley.creche.domain.Administration.Child;
  */
 public class RegistrationForm extends javax.swing.JFrame {
     Styles style = new Styles();
+    Parents parent;
     /**
      * Creates new form RegForm
      */
@@ -30,6 +35,10 @@ public class RegistrationForm extends javax.swing.JFrame {
         initComponents();
         
         style.setFrameStyles(this);
+        style.setHeaderLabel(jLabel1);
+        style.setPanelStyles(jPanel2);
+        style.setPanelStyles(jPanel4);
+        style.setPanelStyles(jPanel5);
         style.setButtonStyle(jButton1);
         style.setButtonStyle(jButton2);
         
@@ -41,6 +50,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         for(Component com22 : com2){
             com22.setEnabled(false);
         }
+        
+        populateComboBox();
     }
 
     /**
@@ -95,6 +106,8 @@ public class RegistrationForm extends javax.swing.JFrame {
         jTextField20 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
@@ -320,6 +333,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel7.setText("Teacher");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -333,33 +349,40 @@ public class RegistrationForm extends javax.swing.JFrame {
                         .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField7))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField6)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel9)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField7))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox1)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 21, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField5)
+                                    .addComponent(jTextField6)))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jCheckBox1)
+                                        .addComponent(jCheckBox2)))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -389,11 +412,15 @@ public class RegistrationForm extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(jCheckBox1)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckBox1)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox2)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
@@ -506,50 +533,9 @@ public class RegistrationForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
+        handleParentData();
+        handleChildData();
         
-        //READ THE FOLLOWING CAREFULLY AND GO TO THE METHODS AND CLASSES
-        //THAT IS CALLED FROM THIS METHOD
-        
-        //THE FACTORY CLASS IS IN THE APP PACKAGE
-        //THE SERVICE IM USING, FOR NOW, IS IN THE SERVICES/ADMINISTRATION SERVICES PACKAGES
-        
-
-        Child child;
-        DetermineGrade dg = new DetermineGrade();
-        ChildFactory factory = new ChildFactory();
-        ChildService cs = new ChildService();
-        
-        //GET ALL DATA FROM USER, PUT THEM IN VARIABLES
-        String name = jTextField5.getText();
-        String lastName = jTextField6.getText();
-        String id = jTextField7.getText();
-        String medicalConditions = jTextArea1.getText();
-        
-        String year = jTextField8.getText();
-        String month = jTextField19.getText();
-        String day = jTextField20.getText();
-        String dob = year+"-"+month+"-"+day;
-        String grade = dg.getGrade(year);
-        int childID = 0;
-        
-        
-        //HERE THE DATA SHOULD BE VALIDATED OR SENT TO A METHOD TO BE VALIDATED
-        
-        
-        
-        //SEND VARIABLES TO CHILD FACTORY, CHILD FACTORY WILL PUT THEM IN THE CHILD MODEL/ DOMAIN
-        child = factory.getChild(childID, name, lastName, id, medicalConditions, grade, dob);
-        
-        //ONCE THEY ARE IN THE MODEL, CALL THE SERVICE TO PUT THEM IN THE DATABASE.
-        //WE DONT HAVE TO SEND THE SERVICE THE VARIABLE BECAUSE THEY ARE IN THE MODEL.
-        //SO FROM THE SERVICE, WE CAN GET THE VARIABLES STRAIGHT OUT OF THE MODEL.
-        //WE ONLY SEND THE OBJECT TO THE SERVICE, SO THAT THE SERVICE KNOWS WHICH CHILD 
-        //OBJECT WE ARE REFERRING TO.
-        try {
-            cs.insertChildData(child);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -569,6 +555,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -588,6 +575,7 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
@@ -612,6 +600,106 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    private void handleChildData() {
+        Child child;
+        DetermineGrade dg = new DetermineGrade();
+        ChildFactory factory = new ChildFactory();
+        ChildService cs = new ChildService();
+        
+        //GET ALL DATA FROM USER, PUT THEM IN VARIABLES
+        String name = jTextField5.getText();
+        String lastName = jTextField6.getText();
+        String id = jTextField7.getText();
+        String medicalConditions = jTextArea1.getText();
+        
+        String year = jTextField8.getText();
+        String month = jTextField19.getText();
+        String day = jTextField20.getText();
+        String dob = year+"-"+month+"-"+day;
+        String grade = dg.getGrade(year);
+        int childID = 0;
+        
+        //VALIDATE GRADE
+        
+        
+        SQLQueries s = new SQLQueries();
+        int parentID = 0; 
+        
+        try {
+            
+            parentID = s.getLastParentID();
+            parent.setParentID(parentID);
+            System.out.println("PARENT ID ------------------> "+parent.getParentID());
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        //HERE THE DATA SHOULD BE VALIDATED OR SENT TO A METHOD TO BE VALIDATED
+        //SEND VARIABLES TO CHILD FACTORY, CHILD FACTORY WILL PUT THEM IN THE CHILD MODEL/ DOMAIN
+       
+        child = factory.getChild(childID, name, lastName, id, medicalConditions, grade, dob);
+        
+        //ONCE THEY ARE IN THE MODEL, CALL THE SERVICE TO PUT THEM IN THE DATABASE.
+        //WE DONT HAVE TO SEND THE SERVICE THE VARIABLE BECAUSE THEY ARE IN THE MODEL.
+        //SO FROM THE SERVICE, WE CAN GET THE VARIABLES STRAIGHT OUT OF THE MODEL.
+        //WE ONLY SEND THE OBJECT TO THE SERVICE, SO THAT THE SERVICE KNOWS WHICH CHILD 
+        //OBJECT WE ARE REFERRING TO.
+        try {
+            cs.insertChildData(child, parent);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void handleParentData() {
+        
+        String fatherName = jTextField9.getText();
+        String fatherLastName = jTextField10.getText();
+        String fatherID = jTextField11.getText();
+        String fatherOccupation = jTextField12.getText();
+        String fatherContact = jTextField13.getText();
+        
+        String motherName = jTextField14.getText();
+        String motherLastName = jTextField15.getText();
+        String motherID = jTextField16.getText();
+        String motherOccupation = jTextField17.getText();
+        String motherContact = jTextField18.getText();
+        
+        
+        ParentFactory pf = new ParentFactory();
+        SQLQueries s = new SQLQueries();
+        
+        int parentID = 0;
+
+        parent = pf.getParent(parentID, fatherName, fatherLastName, fatherID, fatherOccupation, fatherContact, motherName, motherLastName, motherID, motherOccupation, motherContact);
+        
+        
+        try {
+            s.insertIntoParent(parent);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void populateComboBox() {
+        
+        ArrayList teachers = new ArrayList();
+        SQLQueries s = new SQLQueries();
+        
+        try {
+            teachers = s.getTeachers();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        for (int i = 0; i < teachers.size(); i++){
+            jComboBox1.addItem(teachers.get(i));
+        }
+    }
 
     
 }

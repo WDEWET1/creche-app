@@ -8,7 +8,6 @@ package com.wesley.creche.client.desktop.Maintenance;
 
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.client.desktop.MainFrame;
-import java.awt.Color;
 
 /**
  *

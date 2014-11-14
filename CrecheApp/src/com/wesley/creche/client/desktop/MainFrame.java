@@ -12,7 +12,7 @@ import com.wesley.creche.client.desktop.Administration.AdministrationForm;
 import com.wesley.creche.client.desktop.Emergency.EmergencyForm;
 import com.wesley.creche.client.desktop.Finance.Finance;
 import com.wesley.creche.client.desktop.HumanResource.HumanResource;
-import com.wesley.creche.client.desktop.Login.LoginForm;
+import com.wesley.creche.client.desktop.Administration.Login.LoginForm;
 import com.wesley.creche.client.desktop.reports.Reports;
 import com.wesley.creche.db.create_db;
 import java.awt.Desktop;

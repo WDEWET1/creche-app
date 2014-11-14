@@ -6,6 +6,7 @@
 package com.wesley.creche.services.AdministrationServices;
 
 import com.wesley.creche.domain.Administration.Child;
+import com.wesley.creche.domain.Administration.Parents;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
  */
 public class ChildService {
     
-    public void insertChildData(Child child) throws ClassNotFoundException, SQLException{
+    public void insertChildData(Child child, Parents parent) throws ClassNotFoundException, SQLException{
         
         String driverName = "com.mysql.jdbc.Driver";
         Class.forName(driverName);
@@ -40,17 +41,16 @@ public class ChildService {
         
         //FROM THERE WE GET ALL THE VARIABLE FROM THE MODEL AS YOU CAN SEE BELOW
         
+        System.out.println("PARENT ID ----------------------->" +parent.getParentID());
         
-        
-        
-        PreparedStatement stmt = connection.prepareStatement("INSERT INTO child (name, last_name, id_num, med_con, grade, dob) VALUES(?,?,?,?,?,?)");
-        //stmt.setInt(1, child.getChildID());
+        PreparedStatement stmt = connection.prepareStatement("INSERT INTO child (name, last_name, id_num, med_con, grade, dob, parent_id) VALUES(?,?,?,?,?,?,?)");
         stmt.setString(1, child.getName());
         stmt.setString(2, child.getLastName());
         stmt.setString(3, child.getIdNumber());
         stmt.setString(4, child.getMedicalConditions());
         stmt.setString(5, child.getGrade());
         stmt.setString(6, child.getDob());
+        stmt.setInt(7, parent.getParentID());
         stmt.executeUpdate();
         stmt.close();
 

@@ -5,6 +5,7 @@
  */
 package com.wesley.creche.client.desktop.Administration;
 
+import com.wesley.creche.client.desktop.Administration.ChildAdmin.ProgressForm;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.client.desktop.Administration.ChildAdmin.RegistrationForm;
 import com.wesley.creche.client.desktop.Administration.Jobs.JobForm;
@@ -76,7 +77,12 @@ public class AdministrationForm extends javax.swing.JFrame {
         });
 
         jButton3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        jButton3.setText("Child");
+        jButton3.setText("Child Progress");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Back");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -178,6 +184,12 @@ public class AdministrationForm extends javax.swing.JFrame {
         this.setVisible(false);
         j.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ProgressForm p = new ProgressForm();
+        this.setVisible(false);
+        p.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
