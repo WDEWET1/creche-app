@@ -6,6 +6,9 @@
 package com.wesley.creche.services;
 
 import com.wesley.creche.domain.Administration.Employee;
+import com.wesley.creche.domain.Administration.Parents;
+import com.wesley.creche.domain.Administration.Progress;
+import com.wesley.creche.domain.Administration.User;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -134,14 +137,14 @@ private int childID;
                 + "job_id, name, last_name, email, ph_number, address, hire_date, "
                 + "acc_number) "
                 + "VALUES ("
-                + jobID + ", "
+                + "'" + jobID + "', "
                 + "'" + e.getName() + "', "
                 + "'" + e.getLastName() + "', "
                 + "'" + e.getEmail() + "', "
                 + "'" + e.getContact() + "', "
                 + "'" + e.getAddress() + "', "
                 + "'" + e.getHireDate() + "', "
-                + e.getAccountNumber()
+                + "'" + e.getAccountNumber()+ "'"
         + ")");
         con.close();
         }
@@ -229,34 +232,28 @@ private int childID;
     }
     
     //Insert record into Parents Table....
-    public void insertIntoParent(String name, String fatherName, String fatherLastName, String fatherIDNumber, 
-       String fatherOccupation, String fatherContact, String motherName, String motherLastName, String motherIDNumber,
-       String motherOccupation, String motherContact) throws SQLException, ClassNotFoundException {
+    public void insertIntoParent(Parents parent) throws SQLException, ClassNotFoundException {
        
         Connection con = getTheConnection();
         Statement stm = con.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT child_id FROM child WHERE name = "+name);
-        while(rs.isLast()){
-            childID = Integer.parseInt(rs.getString(1));
-        }
+        
         try {
         Connection conn = getTheConnection();
         Statement stmt = conn.createStatement();
         stmt.executeUpdate("INSERT INTO parent ("
                 + "father_name, father_last_name, father_ID_no, father_occupation, father_contact,"
-                + "mother_name, mother_last_name, mother_ID_no, mother_occupation, mother_contact, child_id)"
+                + "mother_name, mother_last_name, mother_ID_no, mother_occupation, mother_contact)"
                 + "VALUES ("
-                + "'" + fatherName + "', "
-                + "'" + fatherLastName + "', "
-                + "'" + fatherIDNumber + "', "
-                + "'" + fatherOccupation + "', "
-                + "'" + fatherContact + "', "
-                + "'" + motherName + "', "
-                + "'" + motherLastName + "', "
-                + "'" + motherIDNumber + "', "
-                + "'" + motherOccupation + "', "
-                + "'" + motherContact + "',"
-                + "'" + childID + "'"
+                + "'" + parent.getFatherName() + "', "
+                + "'" + parent.getFatherLastName() + "', "
+                + "'" + parent.getFatherID() + "', "
+                + "'" + parent.getFatherOccupation() + "', "
+                + "'" + parent.getFatherContact() + "', "
+                + "'" + parent.getMotherName() + "', "
+                + "'" + parent.getMotherLastName() + "', "
+                + "'" + parent.getMotherID() + "', "
+                + "'" + parent.getFatherOccupation() + "', "
+                + "'" + parent.getMotherContact() + "'"
         + ")");
         con.close();
         }
@@ -290,29 +287,27 @@ private int childID;
     }
     
     //Insert record into Progress Table....
-    public void insertIntoProgress(int childID, int reading, int phonics, int spelling,
-        int obedience, int arithmetic, int attitude, int homework) throws SQLException, ClassNotFoundException {
+    public void insertIntoProgress(Progress progress) throws SQLException, ClassNotFoundException {
+
         try {
         Connection con = getTheConnection();
         Statement stmt = con.createStatement();
-        stmt.executeUpdate("INSERT INTO progress ("
-                + "child_id, reading, phonics, spelling, obedience, "
-                + "arithmetic, attitude, homework) "
-                + "VALUES ("
-                + childID + ", "
-                + reading + ", "
-                + phonics + ", "
-                + spelling + ", "
-                + obedience + ", "
-                + arithmetic + ", "
-                + attitude + ", "
-                + homework
-        + ")");
+        stmt.executeUpdate("UPDATE progress SET "+
+                " reading =     "+"'"+progress.getReading()+"',"+
+                " phonics =     "+"'"+progress.getPhonics()+"',"+
+                " spelling =    "+"'"+progress.getSpelling()+"',"+
+                " obedience =   "+"'"+progress.getObedience()+"',"+
+                " arithmetic =  "+"'"+progress.getArithmetic()+"',"+
+                " attitude =    "+"'"+progress.getAttitude()+"',"+
+                " homework =    "+"'"+progress.getHomework()+"'"+
+                " WHERE child_id = "+"'"+childID+"'");
+        
         con.close();
         }
         catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
         }
+    
     }
     
     //Insert record into Subject Table....
@@ -512,6 +507,197 @@ private int childID;
         return jobID;
     }
     
+    public int getLastParentID() throws SQLException, ClassNotFoundException {
+        int parentID = 0;
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT * FROM parent");
+
+            while (rs.next())
+            {
+                parentID = (rs.getInt("parent_id"));
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return parentID;
+    }
+    
+    public ArrayList getTeachers() throws SQLException, ClassNotFoundException {
+        
+        ArrayList teachers = new ArrayList();
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT name FROM employees, jobs WHERE job_title = 'teacher'");
+            int i = 0;
+            while (rs.next())
+            {
+               teachers.add(rs.getString(1)); 
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return teachers;
+    }
+    
+    public ArrayList getChildren() throws SQLException, ClassNotFoundException {
+        
+        ArrayList children = new ArrayList();
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT name FROM child");
+            int i = 0;
+            while (rs.next())
+            {
+               children.add(rs.getString(1)); 
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return children;
+    }
+    
+    public int getChildIDByName(String name) throws SQLException, ClassNotFoundException {
+ 
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT child_id FROM Child WHERE name = " + "'"+name+"'");
+            while (rs.next())
+            {
+                childID = (rs.getInt("child_id"));
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return childID;
+    }
+    
+    public void refreshProgressIDs() throws SQLException, ClassNotFoundException {
+        
+        ArrayList children = new ArrayList();
+        ArrayList children2 = new ArrayList();
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT child_id FROM child");
+            int i = 0;
+            while (rs.next())
+            {
+               children.add(rs.getString(1)); 
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT child_id FROM progress");
+            int i = 0;
+            while (rs.next())
+            {
+               children2.add(rs.getString(1)); 
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        
+        if(!children.equals(children2)){
+        
+            try {
+                for (Object children1 : children) {
+                    Connection con = getTheConnection();
+                    Statement stmt = con.createStatement();
+                    stmt.executeUpdate("INSERT INTO progress ("
+                            + "child_id) "
+                            + "VALUES ("
+                            + "'" + children1 + "'"
+                            + ")");
+                    con.close();
+                }
+            }
+            catch (SQLException | ClassNotFoundException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
+    
+    public void insertIntoUsers(User user) throws SQLException, ClassNotFoundException {
+        try {
+        Connection con = getTheConnection();
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate("INSERT INTO user ("
+                + "username, password) "
+                + "VALUES ("
+                + "'"+user.getUsername() + "', "
+                + "'"+user.getPassword() + "'"
+        + ")");
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
+
+  
+    public boolean getUsernameAndPasswordFromDB(User user) throws SQLException, ClassNotFoundException {
+        
+        boolean check = false;
+        
+        String dbUsername = null;
+        String dbPassword = null;
+        
+        try {
+        Connection con = getTheConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT username, password FROM user WHERE username = "+"'"+user.getUsername()+"'"
+        + ")");
+        
+        while (rs.next()){
+                dbUsername = (rs.getString(1));
+                dbPassword = (rs.getString(1));
+        }
+        rs.close();
+        con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }   
+
+        return (user.getUsername().equals(dbUsername) && user.getPassword().equals(dbPassword));
+    }
+
     public String getChildForFinReports() throws SQLException, ClassNotFoundException {
 
         String childFirstName = "";

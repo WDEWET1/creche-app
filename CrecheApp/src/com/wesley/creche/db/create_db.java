@@ -111,8 +111,7 @@ public class create_db {
                     + "mother_last_name VARCHAR(100), "
                     + "mother_ID_no VARCHAR(50), "
                     + "mother_occupation VARCHAR(100), "
-                    + "mother_contact VARCHAR(100), "
-                    + "child_id INT(10) NOT NULL"
+                    + "mother_contact VARCHAR(100)"
             + ")");
         }
         catch (SQLException ex){
@@ -132,6 +131,8 @@ public class create_db {
                     + "attitude INT(15), "
                     + "homework INT(15)"
             + ")");
+            
+            stmt.executeUpdate("ALTER TABLE `progress` ADD UNIQUE(`child_id`);");
         }
         catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Progress Table: " + ex);
@@ -224,6 +225,33 @@ public class create_db {
                     + "unit_price NUMERIC(15,2), "
                     + "quantity INT, "
                     + "discount INT(100)"
+                    
+            + ")");
+        }
+        catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Order Details Table: " + ex);
+        }
+        
+        
+        
+        //Create Users table
+        try {
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS user ("
+                    + "username VARCHAR(100) NOT NULL PRIMARY KEY, "
+                    + "password VARCHAR(1000) NOT NULL"
+                    
+            + ")");
+        }
+        catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Order Details Table: " + ex);
+        }
+       
+        
+        //Create Roles table
+        try {
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS role ("
+                    + "role VARCHAR(15) NOT NULL PRIMARY KEY, "
+                    + "username VARCHAR(15)"
                     
             + ")");
         }

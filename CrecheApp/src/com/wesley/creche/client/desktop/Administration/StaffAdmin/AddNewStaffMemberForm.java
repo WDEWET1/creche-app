@@ -6,9 +6,14 @@
 package com.wesley.creche.client.desktop.Administration.StaffAdmin;
 
 import com.wesley.creche.app.factory.EmployeeFactory;
+import com.wesley.creche.app.factory.UserFactory;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.domain.Administration.Employee;
+import com.wesley.creche.domain.Administration.User;
+import com.wesley.creche.services.LoginService.Encryption;
 import com.wesley.creche.services.SQLQueries;
+import java.io.FileNotFoundException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -114,6 +119,12 @@ public class AddNewStaffMemberForm extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         jLabel11.setText("Password");
+
+        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -339,13 +350,12 @@ public class AddNewStaffMemberForm extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
-                            .addComponent(jButton1))
-                        .addContainerGap(20, Short.MAX_VALUE))
+                            .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -391,7 +401,14 @@ public class AddNewStaffMemberForm extends javax.swing.JFrame {
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AddNewStaffMemberForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        handleUserNameAndPassword();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        
+        
+    }//GEN-LAST:event_jTextField7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -437,6 +454,36 @@ public class AddNewStaffMemberForm extends javax.swing.JFrame {
         
         for (int i = 0; i < jobs.size(); i++){
             jComboBox1.addItem(jobs.get(i));
+        }
+    }
+
+    private void handleUserNameAndPassword() {
+        //INSTANTIATE OBJECTS
+        User user;
+        UserFactory uf = new UserFactory();
+        SQLQueries s = new SQLQueries();
+        
+        //GET DATA
+        String username = jTextField7.getText();
+        String password = jTextField8.getText();
+        String encryptedPassword = null;
+        
+        //ENCRYPT PASSWORD
+        Encryption e = new Encryption();
+        try {
+            encryptedPassword = e.encrypt(password);
+        } catch (NoSuchAlgorithmException | FileNotFoundException ex) {
+            Logger.getLogger(AddNewStaffMemberForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //CREATE OBJECT
+        user = uf.getUser(username, encryptedPassword);
+        
+        //SEND TO DATABASE
+        try {
+            s.insertIntoUsers(user);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(AddNewStaffMemberForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
