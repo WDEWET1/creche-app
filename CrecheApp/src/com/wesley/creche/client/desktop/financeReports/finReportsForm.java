@@ -6,6 +6,10 @@
 package com.wesley.creche.client.desktop.financeReports;
 
 import com.wesley.creche.client.desktop.Styles.Styles;
+import com.wesley.creche.services.SQLQueries;
+import com.wesley.creche.client.desktop.reports.Reports;
+import java.sql.SQLException;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -21,6 +25,22 @@ public class finReportsForm extends javax.swing.JFrame {
         super("Financial Reports");
         initComponents();
         styles.setFrameStyles(this);
+        styles.setButtonStyle(btnClose);
+        styles.setButtonStyle(btnSubmit);
+        
+        
+    }
+    
+    private void getChildren() {
+        SQLQueries sql = new SQLQueries();
+        try {
+            while (sql.getChildForFinReports() != "") {
+                cbxChild.addItem(sql);
+            }
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
     }
 
     /**
@@ -32,21 +52,66 @@ public class finReportsForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnClose = new javax.swing.JButton();
+        lblChild = new javax.swing.JLabel();
+        cbxChild = new javax.swing.JComboBox();
+        btnSubmit = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnClose.setText("Back");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        lblChild.setText("Select Child");
+
+        cbxChild.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnSubmit.setText("Submit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSubmit)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnClose)
+                .addGap(20, 20, 20))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblChild)
+                .addGap(43, 43, 43)
+                .addComponent(cbxChild, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblChild)
+                    .addComponent(cbxChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnClose)
+                    .addComponent(btnSubmit))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+        Reports reports = new Reports();
+        reports.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCloseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -74,7 +139,6 @@ public class finReportsForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(finReportsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -84,5 +148,9 @@ public class finReportsForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JComboBox cbxChild;
+    private javax.swing.JLabel lblChild;
     // End of variables declaration//GEN-END:variables
 }
