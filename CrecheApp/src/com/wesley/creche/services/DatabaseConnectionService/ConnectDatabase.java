@@ -17,13 +17,13 @@ import java.sql.SQLException;
 public class ConnectDatabase {
        Connection connect  = null;
         
-        public Connection getConnection(Connection connection) throws ClassNotFoundException, SQLException {
+        public Connection getConnection() throws ClassNotFoundException, SQLException {
             if(connect == null){
-                System.out.println("in if");
-                return createConnection(connection);
+                //System.out.println("in if");
+                return createConnection(connect);
             }
             else{
-                System.out.println("in else");
+                //System.out.println("in else");
                 return connect;
             }
         
