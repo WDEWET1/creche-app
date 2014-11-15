@@ -727,4 +727,47 @@ private int childID;
         }
         return "";
     }
+
+    public void updatePassword(String oldEncryptedPassword, String newEncryptedPassword) {
+        try {
+        Connection con = getTheConnection();
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate("UPDATE user SET "+
+                " password =    "+"'"+newEncryptedPassword+"'"+
+                " WHERE password = "+"'"+oldEncryptedPassword+"'");
+        
+        con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public boolean checkIfPasswordExists(String oldPassword) throws SQLException, ClassNotFoundException {
+ 
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            int result = 0;
+            
+            ResultSet rs = stmt.executeQuery("SELECT password FROM user WHERE password = " + "'"+oldPassword+"'");
+            while (rs.next())
+            {
+                result = (rs.getInt(1));
+            }
+            
+            if(result == 0){
+                
+                return false;
+            }
+            
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return true;
+    }
 }
