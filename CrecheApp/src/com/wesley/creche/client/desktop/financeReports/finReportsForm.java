@@ -9,6 +9,7 @@ import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.services.SQLQueries;
 import com.wesley.creche.client.desktop.reports.Reports;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 
 /**
@@ -28,18 +29,22 @@ public class finReportsForm extends javax.swing.JFrame {
         styles.setButtonStyle(btnClose);
         styles.setButtonStyle(btnSubmit);
         
-        
-    }
-    
-    private void getChildren() {
-        SQLQueries sql = new SQLQueries();
         try {
-            while (sql.getChildForFinReports() != "") {
-                cbxChild.addItem(sql);
-            }
+            getChildren();
         }
         catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex);
+            
+        }
+    }
+    
+    private void getChildren() throws SQLException, ClassNotFoundException {
+        cbxChild.removeAllItems();
+        SQLQueries sql = new SQLQueries();
+        ArrayList children = new ArrayList();
+        children = sql.getChildren();
+        
+        for (Object children1 : children) {
+            cbxChild.addItem(children1);
         }
     }
 
@@ -116,36 +121,7 @@ public class finReportsForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(finReportsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(finReportsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(finReportsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(finReportsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new finReportsForm().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
