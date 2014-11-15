@@ -5,12 +5,15 @@
  */
 package com.wesley.creche.client.desktop.financeReports;
 
+import com.itextpdf.text.DocumentException;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.services.SQLQueries;
 import com.wesley.creche.client.desktop.reports.Reports;
+import com.wesley.creche.services.pdf.createPdf;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,16 +32,14 @@ public class finReportsForm extends javax.swing.JFrame {
         styles.setButtonStyle(btnClose);
         styles.setButtonStyle(btnSubmit);
         
-        try {
-            getChildren();
-        }
-        catch (SQLException | ClassNotFoundException ex) {
-            
-        }
+        cbxChild.removeAllItems();
+        txtChildId.setEditable(false);
+        txtAccStatus.setEditable(false);
+        txtDue.setEditable(false);
+        txtStartDate.setEditable(false);
     }
     
     private void getChildren() throws SQLException, ClassNotFoundException {
-        cbxChild.removeAllItems();
         SQLQueries sql = new SQLQueries();
         ArrayList children = new ArrayList();
         children = sql.getChildren();
@@ -61,6 +62,14 @@ public class finReportsForm extends javax.swing.JFrame {
         lblChild = new javax.swing.JLabel();
         cbxChild = new javax.swing.JComboBox();
         btnSubmit = new javax.swing.JButton();
+        lblStartDate = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
+        lblStatus = new javax.swing.JLabel();
+        lblDue = new javax.swing.JLabel();
+        txtChildId = new javax.swing.JTextField();
+        txtStartDate = new javax.swing.JTextField();
+        txtAccStatus = new javax.swing.JTextField();
+        txtDue = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,26 +83,69 @@ public class finReportsForm extends javax.swing.JFrame {
         lblChild.setText("Select Child");
 
         cbxChild.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxChildActionPerformed(evt);
+            }
+        });
 
         btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
+
+        lblStartDate.setText("Start Date");
+
+        lblId.setText("Child ID");
+
+        lblStatus.setText("Acc Status");
+
+        lblDue.setText("Amount Due");
+
+        txtChildId.setText("jTextField1");
+
+        txtStartDate.setText("jTextField1");
+
+        txtAccStatus.setText("jTextField1");
+
+        txtDue.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblChild)
+                    .addComponent(lblStartDate)
+                    .addComponent(lblId)
+                    .addComponent(lblStatus)
+                    .addComponent(lblDue))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbxChild, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtChildId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAccStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(106, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSubmit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnClose)
-                .addGap(20, 20, 20))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(lblChild)
-                .addGap(43, 43, 43)
-                .addComponent(cbxChild, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblChild, lblDue, lblId, lblStartDate, lblStatus});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClose, btnSubmit});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cbxChild, txtAccStatus, txtChildId, txtDue, txtStartDate});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -101,11 +153,27 @@ public class finReportsForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblChild)
                     .addComponent(cbxChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblId)
+                    .addComponent(txtChildId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStartDate)
+                    .addComponent(txtStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStatus)
+                    .addComponent(txtAccStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDue)
+                    .addComponent(txtDue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClose)
                     .addComponent(btnSubmit))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -118,6 +186,48 @@ public class finReportsForm extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    private void cbxChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxChildActionPerformed
+        
+        try {
+            getChildren();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        
+        SQLQueries s = new SQLQueries();
+        String name = cbxChild.getSelectedItem().toString();
+        
+        try {
+            String ChildId = Integer.toString(s.getChildIDByName(name));
+            String startDate = s.getChildStartDateByName(name).toString();
+            String accStatus = s.getChildAccountStatusByChildId(s.getChildIDByName(name));
+            String AmountDue = Double.toString(s.getChildAmountDueByChildId(s.getChildIDByName(name)));
+            
+            txtChildId.setText(ChildId);
+            txtStartDate.setText(startDate);
+            txtAccStatus.setText(accStatus);
+            txtDue.setText(AmountDue);
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_cbxChildActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        createPdf writePdf = new createPdf();
+        try {
+           writePdf.writePdfFinancialReport(cbxChild.getSelectedItem().toString(),txtStartDate.getText(),
+                txtAccStatus.getText(), txtDue.getText());
+        }
+        catch (DocumentException | IOException ex) {
+            
+        }
+        
+        JOptionPane.showMessageDialog(null, "Report Generated", "Success", JOptionPane.INFORMATION_MESSAGE);
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -128,5 +238,13 @@ public class finReportsForm extends javax.swing.JFrame {
     private javax.swing.JButton btnSubmit;
     private javax.swing.JComboBox cbxChild;
     private javax.swing.JLabel lblChild;
+    private javax.swing.JLabel lblDue;
+    private javax.swing.JLabel lblId;
+    private javax.swing.JLabel lblStartDate;
+    private javax.swing.JLabel lblStatus;
+    private javax.swing.JTextField txtAccStatus;
+    private javax.swing.JTextField txtChildId;
+    private javax.swing.JTextField txtDue;
+    private javax.swing.JTextField txtStartDate;
     // End of variables declaration//GEN-END:variables
 }

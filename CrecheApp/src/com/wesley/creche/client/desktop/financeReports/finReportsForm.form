@@ -23,19 +23,31 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnSubmit" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnClose" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="lblChild" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              <Component id="cbxChild" min="-2" pref="166" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblChild" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStartDate" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblId" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStatus" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDue" linkSize="1" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="cbxChild" linkSize="3" min="-2" pref="166" max="-2" attributes="0"/>
+                  <Component id="txtChildId" linkSize="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtStartDate" linkSize="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAccStatus" linkSize="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDue" linkSize="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="106" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnSubmit" linkSize="2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnClose" linkSize="2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,12 +59,32 @@
                   <Component id="lblChild" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbxChild" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="207" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtChildId" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtStartDate" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAccStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblDue" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDue" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnClose" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSubmit" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -82,10 +114,56 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxChildActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSubmit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubmitActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStartDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Start Date"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblId">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Child ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblStatus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Acc Status"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDue">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Amount Due"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtChildId">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtStartDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtAccStatus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDue">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
   </SubComponents>
