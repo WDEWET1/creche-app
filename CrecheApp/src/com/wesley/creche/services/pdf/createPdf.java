@@ -11,6 +11,11 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import com.wesley.creche.services.createFolder.createFolder;
+import com.wesley.creche.services.SQLQueries;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -23,19 +28,39 @@ public class createPdf {
         createFolder.createFolder();
     }
     
-    private static void createHeader(String name) {
+    public void writePdfFinancialReport(String name, String startDate,
+            String accStatus, String amountDue) throws DocumentException, IOException {
         
-    }
-    
-    public void writePdf() throws DocumentException, IOException {
         createFolderIfNotExist();
+        SQLQueries s = new SQLQueries();
         
-        Document doc = new Document();
+        String lastName = "";
         
-        PdfWriter.getInstance(doc, new FileOutputStream("c:\\creche\\reports\\test.pdf"));
-        doc.open();
-        doc.add(new Paragraph("Hello World"));
-        doc.add(new Paragraph("This is me"));
-        doc.close();
+        try {
+            lastName = s.getChildSurnameByName(name);
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        
+        Date date = new Date();
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        String today = df.format(date);
+        String fileName = "C:\\creche\\reports\\" + name + today + "_.pdf";
+        
+        Document document = new Document();
+        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(fileName));
+        
+        document.open();
+        
+        Paragraph par = new Paragraph("Financial Report : " + today);
+        par.getFont().setStyle(Font.BOLD);
+        document.add(par);
+        
+        //document.add(new paragraph("-----------------------------"));
+        
+        
+        
+        document.close();
     }
 }
