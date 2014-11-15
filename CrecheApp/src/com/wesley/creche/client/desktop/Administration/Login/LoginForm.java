@@ -7,6 +7,7 @@
 package com.wesley.creche.client.desktop.Administration.Login;
 
 import com.wesley.creche.app.factory.UserFactory;
+import com.wesley.creche.client.desktop.Administration.Logs.Log;
 import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.domain.Administration.User;
@@ -196,6 +197,9 @@ public class LoginForm extends javax.swing.JFrame {
             this.setVisible(false);
             m.setVisible(true);
             m.displayUserName(user);
+            
+            Log log = new Log();
+            log.log("logged into Creche Management Application.", user);
 
         }else if(check == false){
             jButton3.setVisible(true);
@@ -210,12 +214,6 @@ public class LoginForm extends javax.swing.JFrame {
                 jLabel5.setText("No more attempts. Exiting application...");
                 jLabel5.setForeground(Color.red);
                 
-                long start = System.currentTimeMillis();
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 System.exit(1);
             }
         }

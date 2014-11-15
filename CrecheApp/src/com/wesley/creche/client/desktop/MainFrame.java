@@ -13,6 +13,7 @@ import com.wesley.creche.client.desktop.Administration.Emergency.EmergencyForm;
 import com.wesley.creche.client.desktop.Finance.Finance;
 import com.wesley.creche.client.desktop.HumanResource.HumanResource;
 import com.wesley.creche.client.desktop.Administration.Login.LoginForm;
+import com.wesley.creche.client.desktop.Administration.Logs.Log;
 import com.wesley.creche.client.desktop.reports.Reports;
 import com.wesley.creche.db.create_db;
 import com.wesley.creche.domain.Administration.User;
@@ -32,6 +33,8 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     final Styles styles = new Styles();
+    User user;
+    
     public MainFrame(){
         super("Childcare Management System");
         initComponents();
@@ -268,6 +271,9 @@ public class MainFrame extends javax.swing.JFrame {
         LoginForm login = new LoginForm();
         this.setVisible(false);
         login.setVisible(true);
+        
+        Log log = new Log();
+        log.log("Logged out of Creche Management Application.", user);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -345,6 +351,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void displayUserName(User user) {
         jLabel2.setText("Welcome, "+user.getUsername());
+        getCurrentUser(user);
     }
-
+    
+    public User getCurrentUser(User user){
+        this.user = user;
+        return user;
+    }
 }
