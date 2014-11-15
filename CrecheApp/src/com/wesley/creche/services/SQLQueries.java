@@ -405,9 +405,8 @@ private int childID;
         try {
             Connection con = getTheConnection();
             Statement stmt = con.createStatement();
-
-            ResultSet rs = stmt.executeQuery("SELECT last_name FROM Child WHERE name = " + cName);
-
+            
+            ResultSet rs = stmt.executeQuery("SELECT last_name FROM child WHERE name = '" + cName + "';");
             while (rs.next())
             {
                 lastName = (rs.getString("last_name"));
@@ -598,6 +597,94 @@ private int childID;
             System.out.println(ex);
         }
         return childID;
+    }
+    
+    public Date getChildStartDateByName(String name) throws SQLException, ClassNotFoundException {
+ 
+        Date startDate = java.sql.Date.valueOf("2014-01-01");
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT start_date FROM Child WHERE name = " + "'"+name+"'");
+            while (rs.next())
+            {
+                startDate = (rs.getDate("start_date"));
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return startDate;
+    }
+    
+    public String getChildAccountStatusByChildId(int id) throws SQLException, ClassNotFoundException {
+ 
+        String status = "";
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT status FROM fees WHERE child_id = " + "'"+id+"'");
+            while (rs.next())
+            {
+                status = (rs.getString("status"));
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return status;
+    }
+    
+    public Double getChildAmountDueByChildId(int id) throws SQLException, ClassNotFoundException {
+ 
+        Double amountDue = 0.00;
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT amount_due FROM fees WHERE child_id = " + "'"+id+"'");
+            while (rs.next())
+            {
+                amountDue = (rs.getDouble("amount_due"));
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return amountDue;
+    }
+    
+    public Date getChildLastDateByName(String name) throws SQLException, ClassNotFoundException {
+ 
+        Date lastDate = java.sql.Date.valueOf("2014-01-01");
+        
+        try {
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            ResultSet rs = stmt.executeQuery("SELECT last_date FROM Child WHERE name = " + "'"+name+"'");
+            while (rs.next())
+            {
+                lastDate = (rs.getDate("last_date"));
+            }
+            rs.close();
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+        return lastDate;
     }
     
     public void refreshProgressIDs() throws SQLException, ClassNotFoundException {
