@@ -9,6 +9,7 @@ import com.wesley.creche.client.desktop.Administration.ChildAdmin.ProgressForm;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.client.desktop.Administration.ChildAdmin.RegistrationForm;
 import com.wesley.creche.client.desktop.Administration.Jobs.JobForm;
+import com.wesley.creche.client.desktop.Administration.Login.ChangePasswordForm;
 import com.wesley.creche.client.desktop.Administration.StaffAdmin.UpdateStaff;
 import com.wesley.creche.client.desktop.MainFrame;
 import java.sql.SQLException;
@@ -205,7 +206,9 @@ public class AdministrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        ChangePasswordForm c = new ChangePasswordForm();
+        this.setVisible(false);
+        c.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
