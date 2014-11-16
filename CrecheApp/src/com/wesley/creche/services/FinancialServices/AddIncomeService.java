@@ -18,13 +18,17 @@ import java.sql.Statement;
 public class AddIncomeService {
     public void addIncome(String descrip, String date, double amount) throws SQLException, ClassNotFoundException{
         ConnectDatabase connect = new ConnectDatabase();
+        try {
         Connection con = connect.getConnection();
         Statement stmt = con.createStatement();
         
-        String sql = "INSERT INTO income " +
-            "VALUES ("+descrip+", "+date+", "+amount+")";
-        stmt.executeUpdate(sql);
-        //String update = "UPDATE fees set amount_due = "+updatedAmount+", status = \'Overdue\' WHERE fee_id = "+fees_id+"";
+        String sql = "INSERT INTO income(description,date_received,amount) VALUES ('"+descrip+"', '"+date+"', "+amount+")";
         
+       stmt.executeUpdate(sql);
+       
+        }catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
     }
+  
 }
