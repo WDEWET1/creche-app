@@ -8,7 +8,9 @@ package com.wesley.creche.client.desktop.Finance;
 
 import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
+import com.wesley.creche.domain.Finance.Expense;
 import com.wesley.creche.domain.Finance.Income;
+import com.wesley.creche.services.FinancialServices.GetExpensesService;
 import com.wesley.creche.services.FinancialServices.GetIncomeService;
 import java.awt.Color;
 import java.sql.SQLException;
@@ -28,7 +30,7 @@ public final class Finance extends javax.swing.JFrame {
      */
     Styles style = new Styles();
     GetIncomeService incomeService = new GetIncomeService();
-            
+    GetExpensesService expenseService = new GetExpensesService();        
     
     public Finance() throws ClassNotFoundException, SQLException {
         super("Finance(Income and Expenditures)");
@@ -113,6 +115,11 @@ public final class Finance extends javax.swing.JFrame {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,20 +190,26 @@ public final class Finance extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-        setTableToExpense();
+      
+            try {
+                // TODO add your handling code here:
+                setTableToExpense();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        String month = (String)jComboBox1.getSelectedItem();
-        String year =  (String) jComboBox2.getSelectedItem();
-        
-        System.out.println(month);
-        
-        
-        //jLabel1.setText();
+        setTableAccordingToComboBox();
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        setTableAccordingToComboBox();
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void setTableToIncome() throws ClassNotFoundException, SQLException{
         ArrayList<Income> incomelist = incomeService.getIncomeList();
@@ -217,18 +230,96 @@ public final class Finance extends javax.swing.JFrame {
         jTable1.setModel(tableModel);     
     }
     
-    private void setTableToExpense(){
+    private void setTableToIncomeWithMonths(String month, String year) throws ClassNotFoundException, SQLException{
+        ArrayList<Income> incomelist = incomeService.getIncomeByMonthAndYear(month, year);
+        
+        String col[] = {"Income_ID", "Description","Date_received", "Amount"};
+        DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+        
+        for(int i = 0; i <incomelist.size(); i++){
+        
+            int income_id = incomelist.get(i).getIncome_id();
+            String Description = incomelist.get(i).getDesc();
+            String date = incomelist.get(i).getDate();
+            double amount = incomelist.get(i).getAmount();
+            
+            Object[] data = {income_id, Description, date, amount};
+            tableModel.addRow(data);                           
+        }        
+        jTable1.setModel(tableModel);     
+    }
+    
+    private void setTableToExpense() throws ClassNotFoundException, SQLException{
+        ArrayList<Expense> expenseList = expenseService.getExpensesList();
+        
         String col[] = {"Expense_ID", "Description","Date_received", "Amount"};
         DefaultTableModel tableModel = new DefaultTableModel(col, 0);
         
+        for(int i = 0; i < expenseList.size(); i++){
+            int expense_id = expenseList.get(i).getExpense_id();
+            String descrip = expenseList.get(i).getDesc();
+            String date = expenseList.get(i).getDate();
+            double amount = expenseList.get(i).getAmount();
+            
+            Object[] data = {expense_id, descrip, date, amount};
+            tableModel.addRow(data);
+        }
+        
         jTable1.setModel(tableModel);
+    }
+    
+    private void setTableToExpenseWithMonths(String month,String year) throws ClassNotFoundException, SQLException{
+        ArrayList<Expense> expenseList = expenseService.getExpenseListByMonthAndYear(month, year);
+        
+        String col[] = {"Expense_ID", "Description","Date_received", "Amount"};
+        DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+        
+        for(int i = 0; i < expenseList.size(); i++){
+            int expense_id = expenseList.get(i).getExpense_id();
+            String descrip = expenseList.get(i).getDesc();
+            String date = expenseList.get(i).getDate();
+            double amount = expenseList.get(i).getAmount();
+            
+            Object[] data = {expense_id, descrip, date, amount};
+            tableModel.addRow(data);
+        }
+        
+        jTable1.setModel(tableModel);
+    }
+    
+    private void setTableAccordingToComboBox(){
+        String month = (String)jComboBox1.getSelectedItem();
+        String year =  (String) jComboBox2.getSelectedItem();
+        
+        if(jRadioButton1.isSelected()){
+            try {
+                setTableToIncomeWithMonths(month, year);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        
+        }else if(jRadioButton2.isSelected()){
+            
+            try {
+                setTableToExpenseWithMonths(month, year);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            
+        }
     }
     
     private void setCombobox(){
         String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(months));
         
-        String[] years = {"2013","2014"};
+        String[] years = {"2012","2013","2014"};
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(years));
     }
 
