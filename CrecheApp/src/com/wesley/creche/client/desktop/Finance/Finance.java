@@ -27,6 +27,8 @@ public final class Finance extends javax.swing.JFrame {
         
         style.setFrameStyles(this);
         style.setButtonStyle(jButton1);
+        style.setButtonStyle(jButton2);
+        style.setButtonStyle(jButton3);
         buttonGroup1.add(jRadioButton1);
         buttonGroup1.add(jRadioButton2);     
         jRadioButton1.setSelected(true);
