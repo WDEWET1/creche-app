@@ -8,7 +8,14 @@ package com.wesley.creche.client.desktop.Finance;
 
 import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
+import com.wesley.creche.domain.Finance.Income;
+import com.wesley.creche.services.FinancialServices.GetIncomeService;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,8 +27,10 @@ public final class Finance extends javax.swing.JFrame {
      * Creates new form Accounting
      */
     Styles style = new Styles();
+    GetIncomeService incomeService = new GetIncomeService();
+            
     
-    public Finance() {
+    public Finance() throws ClassNotFoundException, SQLException {
         super("Finance(Income and Expenditures)");
         initComponents();
         
@@ -33,6 +42,7 @@ public final class Finance extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton2);     
         jRadioButton1.setSelected(true);
         setTableToIncome();
+        setCombobox();
     }
 
     /**
@@ -52,6 +62,8 @@ public final class Finance extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jComboBox2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +105,15 @@ public final class Finance extends javax.swing.JFrame {
 
         jButton3.setText("Edit");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,16 +135,22 @@ public final class Finance extends javax.swing.JFrame {
                         .addComponent(jRadioButton1)
                         .addGap(26, 26, 26)
                         .addComponent(jRadioButton2)
+                        .addGap(73, 73, 73)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addGap(43, 43, 43)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -144,55 +171,74 @@ public final class Finance extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Tazz", 1234, 2222, 333},
-                {"Waz", 1234, 2222, 333},
-                {"Clifford", 1111, 3333, 123345},
-                {"ady", 111, 222, 123}
-            },
-            new String [] {
-                "Name", "Number 1", "Number 2", "Number 3"
+        
+            try {
+                // TODO add your handling code here:
+                setTableToIncome();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(Finance.class.getName()).log(Level.SEVERE, null, ex);
             }
-        ));
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Tazz", 1234, 2222, 333,1111},
-                {"Was", 1234, 2222, 333,1111},
-                {"Clifford", 1111, 3333, 123345,1111},
-                {"ady", 111, 222, 123,1111}
-            },
-            new String [] {
-                "Name", "Number 1", "Number 2", "Number 3", "Number 4"
-            }
-        ));
+        setTableToExpense();
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
-    public void setTableToIncome(){
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Tazz", 1234, 2222, 333},
-                {"Waz", 1234, 2222, 333},
-                {"Clifford", 1111, 3333, 123345},
-                {"ady", 111, 222, 123}
-            },
-            new String [] {
-                "Name", "Number 1", "Number 2", "Number 3"
-            }
-        ));
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        String month = (String)jComboBox1.getSelectedItem();
+        String year =  (String) jComboBox2.getSelectedItem();
+        
+        System.out.println(month);
+        
+        
+        //jLabel1.setText();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void setTableToIncome() throws ClassNotFoundException, SQLException{
+        ArrayList<Income> incomelist = incomeService.getIncomeList();
+        
+        String col[] = {"Income_ID", "Description","Date_received", "Amount"};
+        DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+        
+        for(int i = 0; i <incomelist.size(); i++){
+        
+            int income_id = incomelist.get(i).getIncome_id();
+            String Description = incomelist.get(i).getDesc();
+            String date = incomelist.get(i).getDate();
+            double amount = incomelist.get(i).getAmount();
+            
+            Object[] data = {income_id, Description, date, amount};
+            tableModel.addRow(data);                           
+        }        
+        jTable1.setModel(tableModel);     
     }
     
+    private void setTableToExpense(){
+        String col[] = {"Expense_ID", "Description","Date_received", "Amount"};
+        DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+        
+        jTable1.setModel(tableModel);
+    }
+    
+    private void setCombobox(){
+        String[] months = {"January","February","March","April","May","June","July","August","September","October","November","December"};
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(months));
+        
+        String[] years = {"2013","2014"};
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(years));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
