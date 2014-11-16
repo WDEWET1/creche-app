@@ -70,35 +70,8 @@ public class GetIncomeService {
     }
     
     public static String getMonthNumber(String monthName){
-        
-        String monthNumber = null;
-        
-        switch(monthName) {
-            case "January" : monthNumber = "01";
-                break;
-            case "February" : monthNumber = "02";
-                break;
-            case "March" : monthNumber = "03";
-                break;
-            case "April" : monthNumber = "04";
-                break;
-            case "May" : monthNumber = "05";
-                break;
-            case "June" : monthNumber = "06";
-                break;
-            case "July" : monthNumber = "07";
-                break;
-            case "August" : monthNumber = "08";
-                break;
-            case "September" : monthNumber = "09";
-                break;
-            case "October" : monthNumber = "10";
-                break;
-            case "November" : monthNumber = "11";
-                break;
-            case "December" : monthNumber = "12";
-                break;
-        }
+        MonthFromStringToNumber monthToNumber = new MonthFromStringToNumber();
+        String monthNumber = monthToNumber.getMonthStringToNumber(monthName);
         
         return monthNumber;
     }
