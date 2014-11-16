@@ -3,3 +3,9 @@ At Sat Nov 15 21:06:58 CAT 2014, user: wesley
    logged into Creche Management Application.
 At Sat Nov 15 21:07:05 CAT 2014, user: wesley
    Logged out of Creche Management Application.
+On Sun Nov 16 19:52:25 CAT 2014, User: WESLEY
+   logged into Creche Management Application.
+On Sun Nov 16 19:52:25 CAT 2014, User: WESLEY
+   logged into Creche Management Application.
+On Sun Nov 16 20:48:07 CAT 2014, User: WESLEY
+   logged into Creche Management Application.

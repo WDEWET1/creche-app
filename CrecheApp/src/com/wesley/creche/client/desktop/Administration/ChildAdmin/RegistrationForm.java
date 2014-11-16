@@ -623,6 +623,7 @@ public class RegistrationForm extends javax.swing.JFrame {
         //VALIDATE GRADE
         
         
+        
         SQLQueries s = new SQLQueries();
         int parentID = 0; 
         
@@ -636,18 +637,11 @@ public class RegistrationForm extends javax.swing.JFrame {
             Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
-        //HERE THE DATA SHOULD BE VALIDATED OR SENT TO A METHOD TO BE VALIDATED
-        //SEND VARIABLES TO CHILD FACTORY, CHILD FACTORY WILL PUT THEM IN THE CHILD MODEL/ DOMAIN
+      
        
         child = factory.getChild(childID, name, lastName, id, medicalConditions, grade, dob);
         
-        //ONCE THEY ARE IN THE MODEL, CALL THE SERVICE TO PUT THEM IN THE DATABASE.
-        //WE DONT HAVE TO SEND THE SERVICE THE VARIABLE BECAUSE THEY ARE IN THE MODEL.
-        //SO FROM THE SERVICE, WE CAN GET THE VARIABLES STRAIGHT OUT OF THE MODEL.
-        //WE ONLY SEND THE OBJECT TO THE SERVICE, SO THAT THE SERVICE KNOWS WHICH CHILD 
-        //OBJECT WE ARE REFERRING TO.
+     
         try {
             cs.insertChildData(child, parent);
         } catch (ClassNotFoundException | SQLException ex) {

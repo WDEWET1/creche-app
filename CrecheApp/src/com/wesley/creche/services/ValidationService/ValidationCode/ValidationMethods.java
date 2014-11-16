@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 
-package com.wesley.creche.client.desktop.Validation.ValidationCode;
+package com.wesley.creche.services.ValidationService.ValidationCode;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -14,7 +18,11 @@ public class ValidationMethods {
     
     //Add validation code/Methods here
     
-    public boolean checkIfDouble(String number){
+    public boolean checkIfEmpty(String data){
+        return data.isEmpty();
+    }
+    
+    public static boolean checkIfDouble(String number){
         boolean check = false;
         try
         {
@@ -51,25 +59,38 @@ public class ValidationMethods {
     return false;
     }
     
-    public boolean isDoubleNegative(String text){
+    public static boolean isDoubleNegative(String text){
        boolean check = false;
        Double amount = Double.parseDouble(text);
-       
-       if(amount < 0){
+       if(amount > 0.00){
            check = true;
        }
        return check;
     }
     
-    public boolean CheckIfConvertableToDouble(String text){
+    public static boolean CheckIfConvertableToDouble(String text){
         boolean check = false;
         
         if(checkIfDouble(text)){
-            if(!isDoubleNegative(text)){
+            if(isDoubleNegative(text)){
+                System.out.println("in 4");
                 check =true;
             }            
         }
         
         return check;
     }
+    
+    public static boolean checkDateFormat(String dateText){
+        boolean check =true;
+        
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");               
+        try {
+          Date d= format.parse(dateText);
+        } catch (ParseException e) {
+            check = false;
+            return check;
+        }
+        return check;
+    }    
 }
