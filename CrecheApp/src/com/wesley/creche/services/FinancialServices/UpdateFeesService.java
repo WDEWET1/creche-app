@@ -19,7 +19,7 @@ import java.sql.Statement;
  */
 public class UpdateFeesService {
     
-    public static void updateChildFees(double updatedAmount,int fees_id, double amountDue) throws SQLException, ClassNotFoundException{
+    public void updateChildFees(double updatedAmount,int fees_id, double amountDue) throws SQLException, ClassNotFoundException{
         ConnectDatabase connect = new ConnectDatabase();
         Connection con = connect.getConnection();
         Statement stmt = con.createStatement();
