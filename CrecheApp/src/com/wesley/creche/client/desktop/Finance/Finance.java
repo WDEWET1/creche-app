@@ -104,6 +104,11 @@ public final class Finance extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton2.setText("Add");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Edit");
 
@@ -210,6 +215,18 @@ public final class Finance extends javax.swing.JFrame {
         // TODO add your handling code here:
         setTableAccordingToComboBox();
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(jRadioButton1.isSelected()){
+            AddIncomeForm addInForm = new AddIncomeForm();
+            addInForm.setVisible(true);
+        }else if(jRadioButton2.isSelected()){
+            AddExpenseForm addExpForm = new AddExpenseForm();
+            addExpForm.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void setTableToIncome() throws ClassNotFoundException, SQLException{
         ArrayList<Income> incomelist = incomeService.getIncomeList();
