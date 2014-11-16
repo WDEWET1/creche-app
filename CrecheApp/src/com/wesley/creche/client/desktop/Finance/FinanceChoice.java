@@ -6,6 +6,7 @@
 
 package com.wesley.creche.client.desktop.Finance;
 
+import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -66,6 +67,11 @@ public class FinanceChoice extends javax.swing.JFrame {
         });
 
         jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("jLabel1");
 
@@ -131,6 +137,13 @@ public class FinanceChoice extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        MainFrame main = new MainFrame();
+        main.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
