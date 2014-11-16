@@ -14,11 +14,66 @@ public class ValidationMethods {
     
     //Add validation code/Methods here
     
-    public void validateIfInteger(String text){
-        
+    public boolean checkIfDouble(String number){
+        boolean check = false;
+        try
+        {
+          Double.parseDouble(number);
+          check = true;
+        }
+        catch(NumberFormatException e)
+        {
+          //not a double
+            check = false;
+        }
+        return check;
     }
     
-    public void ValidateIfStrings(String text){
-        
+    
+    public boolean isNumeric(String str)
+    {
+        for (char c : str.toCharArray())
+        {
+            if (Character.isDigit(c)) return true;
+        }
+        return false;
+    }       
+    
+    public boolean isSpecialSymbol(String text){
+       
+        //DOESN'T WORK!!
+        String specialChars = "/*!@#$%^&*()\"{}_[]|\\?/<>,.";
+     for (int i = 0; i < text.length(); i++) {
+         if (specialChars.contains(text.substring(i, 1))) {
+             return true;
+         }
+     }
+    return false;
     }
+    
+    public boolean isDoubleNegative(String text){
+       boolean check = false;
+       Double amount = Double.parseDouble(text);
+       
+       if(amount < 0){
+           check = true;
+       }
+       return check;
+    }
+    
+    public boolean CheckIfConvertableToDouble(String text){
+        boolean check = false;
+        
+        if(checkIfDouble(text)){
+            if(!isDoubleNegative(text)){
+                check =true;
+            }            
+        }
+        
+        return check;
+    }
+    
+    
+    
+    
 }
