@@ -22,7 +22,7 @@ public class ValidationMethods {
         return data.isEmpty();
     }
     
-    public static boolean checkIfDouble(String number){
+    public boolean checkIfDouble(String number){
         boolean check = false;
         try
         {
@@ -59,7 +59,7 @@ public class ValidationMethods {
     return false;
     }
     
-    public static boolean isDoubleNegative(String text){
+    public boolean isDoubleNegative(String text){
        boolean check = false;
        Double amount = Double.parseDouble(text);
        if(amount > 0.00){
@@ -68,7 +68,7 @@ public class ValidationMethods {
        return check;
     }
     
-    public static boolean CheckIfConvertableToDouble(String text){
+    public boolean CheckIfConvertableToDouble(String text){
         boolean check = false;
         
         if(checkIfDouble(text)){
@@ -81,7 +81,7 @@ public class ValidationMethods {
         return check;
     }
     
-    public static boolean checkDateFormat(String dateText){
+    public boolean checkDateFormat(String dateText){
         boolean check =true;
         
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");               
