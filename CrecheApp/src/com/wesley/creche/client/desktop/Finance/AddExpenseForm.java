@@ -7,8 +7,8 @@
 package com.wesley.creche.client.desktop.Finance;
 
 import com.wesley.creche.client.desktop.Styles.Styles;
-import com.wesley.creche.client.desktop.Validation.ValidationCode.ValidationMethods;
 import com.wesley.creche.services.FinancialServices.AddExpensesService;
+import com.wesley.creche.services.ValidationService.ValidationCode.ValidationMethods;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -148,6 +148,13 @@ public class AddExpenseForm extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null, "date correct");
                 if(doubleChecker){
                     Double amountAdded = Double.parseDouble(amount);
+                    try {
+                        addExp.addExpense(descr, dateT, amountAdded);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(AddExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AddExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     JOptionPane.showMessageDialog(null, "IN UPDATE");
                 }else{
                 JOptionPane.showMessageDialog(null, "One or two fields is wrong \nPlease check and submit again");
