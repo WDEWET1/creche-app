@@ -21,8 +21,9 @@ public class AddExpensesService {
         Connection con = connect.getConnection();
         Statement stmt = con.createStatement();
         
-        String sql = "INSERT INTO expenses " +
+        String sql = "INSERT INTO expenses (description, date_paid, amount)" +
             "VALUES ("+descrip+", "+dateExpended+", "+amount+")";
+        //stmt.executeUpdate(sql);
         stmt.executeUpdate(sql);
     }
 }

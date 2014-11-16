@@ -19,11 +19,14 @@ import java.sql.Statement;
  */
 public class UpdateFeesService {
     
-    public static void updateChildFees(double updatedAmount,int fees_id) throws SQLException, ClassNotFoundException{
+    public static void updateChildFees(double updatedAmount,int fees_id, double amountDue) throws SQLException, ClassNotFoundException{
         ConnectDatabase connect = new ConnectDatabase();
         Connection con = connect.getConnection();
         Statement stmt = con.createStatement();
-        String update = "UPDATE fees set amount_due = "+updatedAmount+", status = \'Overdue\' WHERE fee_id = "+fees_id+"";
+        
+        double amount = amountDue - updatedAmount;
+        
+        String update = "UPDATE fees set amount_due = "+amount+", status = \'Overdue\' WHERE fee_id = "+fees_id+"";
         stmt.executeUpdate(update);       
         
     }
