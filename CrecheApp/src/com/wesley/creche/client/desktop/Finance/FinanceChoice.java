@@ -119,9 +119,17 @@ public class FinanceChoice extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Finance fin = new Finance();
-        fin.setVisible(true);
-        this.setVisible(false);
+        Finance fin;
+        try {
+            fin = new Finance();
+            fin.setVisible(true);
+            this.setVisible(false);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FinanceChoice.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(FinanceChoice.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
