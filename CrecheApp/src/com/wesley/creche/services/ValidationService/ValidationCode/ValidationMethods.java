@@ -62,7 +62,7 @@ public class ValidationMethods {
     public boolean isDoubleNegative(String text){
        boolean check = false;
        Double amount = Double.parseDouble(text);
-       if(amount > 0.00){
+       if(amount < 0.00){
            check = true;
        }
        return check;
