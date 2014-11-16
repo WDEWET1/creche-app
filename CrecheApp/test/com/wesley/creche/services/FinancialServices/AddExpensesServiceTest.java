@@ -44,13 +44,14 @@ public class AddExpensesServiceTest {
     @Test
     public void testAddExpense() throws Exception {
         System.out.println("addExpense");
-        String descrip = "";
-        String dateExpended = "";
-        double amount = 0.0;
+        String descrip = "Test Case added";
+        String dateExpended = "2012-12-31";
+        double amount = 100.0;
         AddExpensesService instance = new AddExpensesService();
         instance.addExpense(descrip, dateExpended, amount);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
+        
     }
     
 }

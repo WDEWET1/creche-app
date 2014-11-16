@@ -44,13 +44,13 @@ public class MonthFromStringToNumberTest {
     @Test
     public void testGetMonthStringToNumber() {
         System.out.println("getMonthStringToNumber");
-        String monthName = "";
+        String monthName = "January";
         MonthFromStringToNumber instance = new MonthFromStringToNumber();
-        String expResult = "";
+        String expResult = "01";
         String result = instance.getMonthStringToNumber(monthName);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }

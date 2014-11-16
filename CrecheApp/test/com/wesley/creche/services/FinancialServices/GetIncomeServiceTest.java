@@ -48,9 +48,9 @@ public class GetIncomeServiceTest {
         GetIncomeService instance = new GetIncomeService();
         ArrayList expResult = null;
         ArrayList result = instance.getIncomeList();
-        assertEquals(expResult, result);
+        assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -59,14 +59,15 @@ public class GetIncomeServiceTest {
     @Test
     public void testGetIncomeByMonthAndYear() throws Exception {
         System.out.println("getIncomeByMonthAndYear");
-        String month = "";
-        String year = "";
+        String month = "November";
+        String year = "2014";
         GetIncomeService instance = new GetIncomeService();
         ArrayList expResult = null;
         ArrayList result = instance.getIncomeByMonthAndYear(month, year);
-        assertEquals(expResult, result);
+        //assertEquals(expResult, result);
+        assertNotNull(result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -75,13 +76,13 @@ public class GetIncomeServiceTest {
     @Test
     public void testGetMonthNumber() {
         System.out.println("getMonthNumber");
-        String monthName = "";
+        String monthName = "December";
         GetIncomeService instance = new GetIncomeService();
-        String expResult = "";
+        String expResult = "12";
         String result = instance.getMonthNumber(monthName);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }

@@ -44,11 +44,14 @@ public class UpdateFeesServiceTest {
     @Test
     public void testUpdateChildFees() throws Exception {
         System.out.println("updateChildFees");
-        double updatedAmount = 0.0;
-        int fees_id = 0;
-        UpdateFeesService.updateChildFees(updatedAmount, fees_id);
+        double updatedAmount = 120.00;
+        int fees_id = 1;
+        double overDueAmount =120.00;
+        UpdateFeesService.updateChildFees(updatedAmount, fees_id,overDueAmount);
         // TODO review the generated test code and remove the default call to fail.
-        fail("This test is set to fail.");
+        //fail("This test is set to fail.");
+        
+        
     }
     
 }
