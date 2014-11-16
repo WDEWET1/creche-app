@@ -14,7 +14,7 @@ import java.awt.Color;
  *
  * @author TaswellSalie
  */
-public class Finance extends javax.swing.JFrame {
+public final class Finance extends javax.swing.JFrame {
 
     /**
      * Creates new form Accounting
@@ -22,14 +22,15 @@ public class Finance extends javax.swing.JFrame {
     Styles style = new Styles();
     
     public Finance() {
-        super("Finance");
+        super("Finance(Income and Expenditures)");
         initComponents();
         
         style.setFrameStyles(this);
         style.setButtonStyle(jButton1);
         buttonGroup1.add(jRadioButton1);
-        buttonGroup1.add(jRadioButton2);                
-        
+        buttonGroup1.add(jRadioButton2);     
+        jRadioButton1.setSelected(true);
+        setTableToIncome();
     }
 
     /**
@@ -47,6 +48,8 @@ public class Finance extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +87,10 @@ public class Finance extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButton2.setText("Add");
+
+        jButton3.setText("Edit");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,8 +100,11 @@ public class Finance extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)))
                         .addGap(33, 33, 33))
@@ -113,17 +123,20 @@ public class Finance extends javax.swing.JFrame {
                     .addComponent(jRadioButton2))
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2))
+                .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        MainFrame main = new MainFrame();
-        main.setVisible(true);
+        FinanceChoice finChoice = new FinanceChoice();
+        finChoice.setVisible(true);
         this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -133,18 +146,6 @@ public class Finance extends javax.swing.JFrame {
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Tazz", 1234, 2222, 333},
-                {"Waz", 1234, 2222, 333},
-                {"Clifford", 1111, 3333, 123345},
-                {"ady", 111, 222, 123},
-                {"Waz", 1234, 2222, 333},
-                {"Clifford", 1111, 3333, 123345},
-                {"ady", 111, 222, 123},
-                {"Waz", 1234, 2222, 333},
-                {"Clifford", 1111, 3333, 123345},
-                {"ady", 111, 222, 123},
-                {"Waz", 1234, 2222, 333},
-                {"Clifford", 1111, 3333, 123345},
-                {"ady", 111, 222, 123},
                 {"Waz", 1234, 2222, 333},
                 {"Clifford", 1111, 3333, 123345},
                 {"ady", 111, 222, 123}
@@ -170,11 +171,26 @@ public class Finance extends javax.swing.JFrame {
         ));
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+    public void setTableToIncome(){
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Tazz", 1234, 2222, 333},
+                {"Waz", 1234, 2222, 333},
+                {"Clifford", 1111, 3333, 123345},
+                {"ady", 111, 222, 123}
+            },
+            new String [] {
+                "Name", "Number 1", "Number 2", "Number 3"
+            }
+        ));
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
