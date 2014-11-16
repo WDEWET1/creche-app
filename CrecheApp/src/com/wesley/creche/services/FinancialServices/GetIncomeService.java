@@ -69,7 +69,7 @@ public class GetIncomeService {
         return incomeListByMonth;
     }
     
-    public static String getMonthNumber(String monthName){
+    public String getMonthNumber(String monthName){
         MonthFromStringToNumber monthToNumber = new MonthFromStringToNumber();
         String monthNumber = monthToNumber.getMonthStringToNumber(monthName);
         
@@ -84,5 +84,5 @@ public class GetIncomeService {
             System.out.println(in.get(i).getIncome_id()+" "+in.get(i).getDesc()+" "+in.get(i).getDate());
         }        
     }
-               */
+    */
 }
