@@ -8,10 +8,9 @@ package com.wesley.creche.services.FinancialServices;
 
 import com.wesley.creche.services.DatabaseConnectionService.ConnectDatabase;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import net.proteanit.sql.DbUtils;
+
 
 
 /**
@@ -27,9 +26,5 @@ public class UpdateFeesService {
         String update = "UPDATE fees set amount_due = "+updatedAmount+", status = \'Overdue\' WHERE fee_id = "+fees_id+"";
         stmt.executeUpdate(update);       
         
-    }
-    
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        updateChildFees(150.00,2);
     }
 }
