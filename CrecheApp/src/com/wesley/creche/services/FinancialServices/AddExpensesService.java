@@ -24,6 +24,10 @@ public class AddExpensesService {
         String sql = "INSERT INTO expenses (description, date_paid, amount)" +
             "VALUES ("+descrip+", "+dateExpended+", "+amount+")";
         //stmt.executeUpdate(sql);
+        try{
         stmt.executeUpdate(sql);
+        }catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 }

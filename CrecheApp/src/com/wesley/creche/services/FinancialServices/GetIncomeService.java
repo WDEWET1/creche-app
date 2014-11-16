@@ -75,14 +75,5 @@ public class GetIncomeService {
         
         return monthNumber;
     }
-    /*
-    public static void main(String[] args) throws ClassNotFoundException, SQLException {
-       
-        ArrayList<Income> in = getIncomeByMonthAndYear("August", "2014");
-        
-        for(int i = 0; i < in.size(); i++){
-            System.out.println(in.get(i).getIncome_id()+" "+in.get(i).getDesc()+" "+in.get(i).getDate());
-        }        
-    }
-    */
+    
 }
