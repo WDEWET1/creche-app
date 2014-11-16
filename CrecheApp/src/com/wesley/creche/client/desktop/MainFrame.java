@@ -10,10 +10,10 @@ package com.wesley.creche.client.desktop;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.client.desktop.Administration.AdministrationForm;
 import com.wesley.creche.client.desktop.Administration.Emergency.EmergencyForm;
-import com.wesley.creche.client.desktop.Finance.Finance;
 import com.wesley.creche.client.desktop.HumanResource.HumanResource;
 import com.wesley.creche.client.desktop.Administration.Login.LoginForm;
 import com.wesley.creche.client.desktop.Administration.Logs.Log;
+import com.wesley.creche.client.desktop.Finance.FinanceChoice;
 import com.wesley.creche.client.desktop.reports.Reports;
 import com.wesley.creche.db.create_db;
 import com.wesley.creche.domain.Administration.User;
@@ -21,7 +21,6 @@ import com.wesley.creche.services.ValidationService.Validationframes.AreYouSure;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -249,12 +248,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         
-        Finance fin = null;
-        try {
-            fin = new Finance();
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        FinanceChoice fin = new FinanceChoice();
         fin.setVisible(true);
         this.setVisible(false);
         // TODO add your handling code here:

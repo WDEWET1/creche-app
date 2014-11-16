@@ -7,10 +7,10 @@
 package com.wesley.creche.client.desktop.Finance;
 
 import com.wesley.creche.client.desktop.Styles.Styles;
-import com.wesley.creche.client.desktop.Validation.ValidationCode.ValidationMethods;
 import com.wesley.creche.services.FinancialServices.ChildBalanceService;
 import com.wesley.creche.services.FinancialServices.UpdateFeesService;
 import com.wesley.creche.services.FinancialServices.getChildDetails;
+import com.wesley.creche.services.ValidationService.ValidationCode.ValidationMethods;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
