@@ -9,6 +9,7 @@ package com.wesley.creche.client.desktop.Finance;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.client.desktop.Validation.ValidationCode.ValidationMethods;
 import com.wesley.creche.services.FinancialServices.ChildBalanceService;
+import com.wesley.creche.services.FinancialServices.UpdateFeesService;
 import com.wesley.creche.services.FinancialServices.getChildDetails;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -121,7 +122,7 @@ public class FeesForm extends javax.swing.JFrame {
 
         jLabel7.setText("Status :");
 
-        jButton3.setText("Pay");
+        jButton3.setText("pay this child fees");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -132,7 +133,7 @@ public class FeesForm extends javax.swing.JFrame {
 
         jLabel9.setText("Pay amount :");
 
-        jButton2.setText("Update");
+        jButton2.setText("Pay account");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -265,12 +266,12 @@ public class FeesForm extends javax.swing.JFrame {
         if(jRadioButton1.isSelected()){
             int row = jTable1.getSelectedRow();
             jTextField1.setText(jTable1.getModel().getValueAt(row, 0).toString());
-            jTextField2.setText(jTable1.getModel().getValueAt(row, 1).toString());
-            jTextField3.setText(jTable1.getModel().getValueAt(row, 2).toString());
-            jTextField4.setText(jTable1.getModel().getValueAt(row, 3).toString());
-            jTextField5.setText(jTable1.getModel().getValueAt(row, 4).toString());
-            jTextField6.setText(jTable1.getModel().getValueAt(row, 5).toString());
-            jTextField7.setText(jTable1.getModel().getValueAt(row, 6).toString());    
+            jTextField2.setText(jTable1.getModel().getValueAt(row, 2).toString());
+            jTextField3.setText(jTable1.getModel().getValueAt(row, 3).toString());
+            jTextField4.setText(jTable1.getModel().getValueAt(row, 4).toString());
+            jTextField5.setText(jTable1.getModel().getValueAt(row, 5).toString());
+            jTextField6.setText(jTable1.getModel().getValueAt(row, 6).toString());
+            jTextField7.setText(jTable1.getModel().getValueAt(row, 7).toString());    
         }else{
             JOptionPane.showMessageDialog(null, "Can not update a paid field");
         }
@@ -316,18 +317,34 @@ public class FeesForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(jRadioButton1.isSelected()){
          ValidationMethods validate = new ValidationMethods();
+        int fee_id = Integer.parseInt(jTextField1.getText());
+                
         String payAmount = jTextField9.getText();
+        double amountDue = Double.parseDouble(jTextField5.getText());
+        
         boolean check = validate.CheckIfConvertableToDouble(payAmount);
-        JOptionPane.showMessageDialog(null, "check: "+check);
+        //JOptionPane.showMessageDialog(null, "check: "+check);
+        
             if(check == true){
-
                // JOptionPane.showMessageDialog(null, "Success");
+                double amount = Double.parseDouble(payAmount);
+                UpdateFeesService updateChild = new UpdateFeesService();
+                JOptionPane.showMessageDialog(null, "Fees Updated");               
+                try{
+                updateChild.updateChildFees(amount, fee_id, amountDue);
+                
+                } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(AddExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AddExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                
             }
             else{
                 JOptionPane.showMessageDialog(null, "The value in the amount field is not valid: \nPlease check that it is a compatible type");
             }   
         }else if(jRadioButton2.isSelected()){
-                JOptionPane.showMessageDialog(null, "Ca not update a paid field");
+                JOptionPane.showMessageDialog(null, "Can not update a paid field");
         }
         
         

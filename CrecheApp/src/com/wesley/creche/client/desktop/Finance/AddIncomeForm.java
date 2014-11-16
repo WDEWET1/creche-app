@@ -7,8 +7,8 @@
 package com.wesley.creche.client.desktop.Finance;
 
 import com.wesley.creche.client.desktop.Styles.Styles;
-import com.wesley.creche.client.desktop.Validation.ValidationCode.ValidationMethods;
 import com.wesley.creche.services.FinancialServices.AddIncomeService;
+import com.wesley.creche.services.ValidationService.ValidationCode.ValidationMethods;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +32,7 @@ public class AddIncomeForm extends javax.swing.JFrame {
         style.setFrameStyles(this);
         style.setNormalLabel(jLabel4);
         jLabel4.setText("Please add income details below :");
+        jTextField2.setToolTipText("2012-12-31");
     }
 
     /**
@@ -137,34 +138,34 @@ public class AddIncomeForm extends javax.swing.JFrame {
         String amount = jTextField3.getText();
         //double amount = Double.parseDouble(jTextField3.getText());
         
-        AddIncomeService addIncome = new AddIncomeService();
+        AddIncomeService addIncomeServ = new AddIncomeService();
         ValidationMethods validate = new ValidationMethods();
         
         boolean dateChecker = validate.checkDateFormat(date);
-        boolean amountChecker = validate.CheckIfConvertableToDouble(desc);
+        boolean amountChecker = validate.CheckIfConvertableToDouble(amount);
         
         
         if(dateChecker){
+            //System.out.println("1 date: "+dateChecker+" amount :"+amountChecker);
             if(amountChecker){
             double incomeAmount = Double.parseDouble(amount);
-            JOptionPane.showMessageDialog(null, "IN UPDATE");
             
+            try{
+            addIncomeServ.addIncome(desc, date, incomeAmount);
+             } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(AddExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(AddExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            
+            JOptionPane.showMessageDialog(null, "UPDATED");  
         }   else{
                 JOptionPane.showMessageDialog(null, "One or two fields is wrong \nPlease check and submit again");
             }
         }else{
             JOptionPane.showMessageDialog(null, "One or two fields is wrong \nPlease check and submit again");
         }
-        
-        /*
-            try {               
-                addIncome.addIncome(desc, date, amount);                
-            } catch (SQLException ex) {
-                Logger.getLogger(AddIncomeForm.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(AddIncomeForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        */
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
