@@ -5,6 +5,7 @@
  */
 package com.wesley.creche.db;
 
+import com.wesley.creche.services.LoginService.Encryption;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -32,6 +33,16 @@ public class create_db {
 
         Connection con = DriverManager.getConnection(url, username, password);
         Statement stmt = con.createStatement();
+        
+    /*    
+        //Create database
+        try {
+            stmt.executeUpdate("CREATE DATABASE creche");
+        }
+        catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "database : " + ex);
+        }
+        */
         
         //Create fees table
         try {
@@ -244,6 +255,24 @@ public class create_db {
         }
         catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Order Details Table: " + ex);
+        }
+        
+        String username1 = "admin";
+        String password1 = "admin";
+        
+        Encryption e = new Encryption();
+        String epas = e.encrypt(password1);
+        try {
+        
+        stmt.executeUpdate("INSERT INTO user ("
+                + "username, password) "
+                + "VALUES ("
+                + "'"+username1 + "', "
+                + "'"+epas + "'"
+        + ")");
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
         }
        
         
