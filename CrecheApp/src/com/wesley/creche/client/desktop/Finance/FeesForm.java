@@ -7,15 +7,16 @@
 package com.wesley.creche.client.desktop.Finance;
 
 import com.wesley.creche.client.desktop.Styles.Styles;
+import com.wesley.creche.client.desktop.Validation.ValidationCode.ValidationMethods;
 import com.wesley.creche.services.FinancialServices.ChildBalanceService;
 import com.wesley.creche.services.FinancialServices.getChildDetails;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import net.proteanit.sql.DbUtils;
+
 
 /**
  *
@@ -261,14 +262,20 @@ public class FeesForm extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int row = jTable1.getSelectedRow();
-        jTextField1.setText(jTable1.getModel().getValueAt(row, 0).toString());
-        jTextField2.setText(jTable1.getModel().getValueAt(row, 1).toString());
-        jTextField3.setText(jTable1.getModel().getValueAt(row, 2).toString());
-        jTextField4.setText(jTable1.getModel().getValueAt(row, 3).toString());
-        jTextField5.setText(jTable1.getModel().getValueAt(row, 4).toString());
-        jTextField6.setText(jTable1.getModel().getValueAt(row, 5).toString());
-        jTextField7.setText(jTable1.getModel().getValueAt(row, 6).toString());
+        if(jRadioButton1.isSelected()){
+            int row = jTable1.getSelectedRow();
+            jTextField1.setText(jTable1.getModel().getValueAt(row, 0).toString());
+            jTextField2.setText(jTable1.getModel().getValueAt(row, 1).toString());
+            jTextField3.setText(jTable1.getModel().getValueAt(row, 2).toString());
+            jTextField4.setText(jTable1.getModel().getValueAt(row, 3).toString());
+            jTextField5.setText(jTable1.getModel().getValueAt(row, 4).toString());
+            jTextField6.setText(jTable1.getModel().getValueAt(row, 5).toString());
+            jTextField7.setText(jTable1.getModel().getValueAt(row, 6).toString());    
+        }else{
+            JOptionPane.showMessageDialog(null, "Can not update a paid field");
+        }
+        
+        
        // jTextField8.setText(jTable1.getModel().getValueAt(row, 7).toString());
         //jTextField9.setText(jTable1.getModel().getValueAt(row, 8).toString());
         
@@ -307,50 +314,29 @@ public class FeesForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(jRadioButton1.isSelected()){
+         ValidationMethods validate = new ValidationMethods();
         String payAmount = jTextField9.getText();
+        boolean check = validate.CheckIfConvertableToDouble(payAmount);
+        JOptionPane.showMessageDialog(null, "check: "+check);
+            if(check == true){
+
+               // JOptionPane.showMessageDialog(null, "Success");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "The value in the amount field is not valid: \nPlease check that it is a compatible type");
+            }   
+        }else if(jRadioButton2.isSelected()){
+                JOptionPane.showMessageDialog(null, "Ca not update a paid field");
+        }
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FeesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FeesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FeesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FeesForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new FeesForm().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(FeesForm.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(FeesForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
+    
     
     private void setTableValues() throws SQLException, ClassNotFoundException{
         ChildBalanceService CBS = new ChildBalanceService();
