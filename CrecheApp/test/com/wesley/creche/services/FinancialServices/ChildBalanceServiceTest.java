@@ -6,6 +6,7 @@
 
 package com.wesley.creche.services.FinancialServices;
 
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,9 +18,9 @@ import static org.junit.Assert.*;
  *
  * @author TaswellSalie
  */
-public class UpdateFeesServiceTest {
+public class ChildBalanceServiceTest {
     
-    public UpdateFeesServiceTest() {
+    public ChildBalanceServiceTest() {
     }
     
     @BeforeClass
@@ -39,16 +40,17 @@ public class UpdateFeesServiceTest {
     }
 
     /**
-     * Test of updateChildFees method, of class UpdateFeesService.
+     * Test of getChildDetails method, of class ChildBalanceService.
      */
     @Test
-    public void testUpdateChildFees() throws Exception {
-        System.out.println("updateChildFees");
-        double updatedAmount = 0.0;
-        int fees_id = 0;
-        UpdateFeesService.updateChildFees(updatedAmount, fees_id);
+    public void testGetChildDetails() throws Exception {
+        System.out.println("getChildDetails");
+        ChildBalanceService instance = new ChildBalanceService();
+        ArrayList expResult = null;
+        ArrayList result = instance.getChildDetails();
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("This test is set to fail.");
+        fail("This test is set to fail");
     }
     
 }
