@@ -10,6 +10,7 @@ import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.services.pdf.createPdf;
 import com.wesley.creche.client.desktop.financeReports.finReportsForm;
+import com.wesley.creche.client.desktop.hrReports.hrReport;
 import java.io.IOException;
 
 /**
@@ -76,6 +77,11 @@ public class Reports extends javax.swing.JFrame {
         });
 
         btnHR.setText("Human Resources");
+        btnHR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHRActionPerformed(evt);
+            }
+        });
 
         btnProgress.setText("Progress Reports");
 
@@ -129,21 +135,6 @@ public class Reports extends javax.swing.JFrame {
         finReportsForm finReports = new finReportsForm();
         finReports.setVisible(true);
         this.setVisible(false);
-        
-        
-        
-        
-        
-        
-        
-        /*createPdf test = new createPdf();
-        
-        try {
-            test.writePdf();
-        }
-        catch (DocumentException | IOException ex) {
-            
-        }*/
     }//GEN-LAST:event_btnFinanceActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -152,6 +143,12 @@ public class Reports extends javax.swing.JFrame {
         main.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnHRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHRActionPerformed
+        hrReport hrRep = new hrReport();
+        hrRep.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnHRActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
