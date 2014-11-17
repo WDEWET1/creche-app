@@ -165,9 +165,9 @@ public class create_db {
         //Create Emergency table
         try {
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Emergency ("
-                    + "ambulance TINYINT(1), " //Boolean Value: 1 means true / 0 means false...!
-                    + "police TINYINT(1), " //Boolean Value: 1 means true / 0 means false...!
-                    + "fire TINYINT(1)" //Boolean Value: 1 means true / 0 means false...!
+                    + "ambulance INT(10), " //Boolean Value: 1 means true / 0 means false...!
+                    + "police INT(10), " //Boolean Value: 1 means true / 0 means false...!
+                    + "fire INT(10)" //Boolean Value: 1 means true / 0 means false...!
             + ")");
         }
         catch (SQLException ex){

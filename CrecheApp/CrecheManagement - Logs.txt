@@ -17,3 +17,35 @@ On Mon Nov 17 01:18:00 CAT 2014, User: ADMIN
    logged into Creche Management Application.
 On Mon Nov 17 01:29:19 CAT 2014, User: ADMIN
    logged into Creche Management Application.
+On Mon Nov 17 07:53:47 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 08:22:30 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 08:29:28 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 08:29:37 CAT 2014, User: ADMIN
+   Logged out of Creche Management Application.
+On Mon Nov 17 08:34:17 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 08:34:23 CAT 2014, User: ADMIN
+   Logged out of Creche Management Application.
+On Mon Nov 17 08:37:12 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 08:37:24 CAT 2014, User: ADMIN
+   Logged out of Creche Management Application.
+On Mon Nov 17 08:46:32 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 08:47:23 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 08:58:39 CAT 2014, User: A
+   logged into Creche Management Application.
+On Mon Nov 17 08:58:42 CAT 2014, User: A
+   Logged out of Creche Management Application.
+On Mon Nov 17 09:10:54 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 09:14:52 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 09:20:58 CAT 2014, User: ADMIN
+   logged into Creche Management Application.
+On Mon Nov 17 09:23:17 CAT 2014, User: ADMIN
+   logged into Creche Management Application.

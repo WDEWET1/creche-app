@@ -5,6 +5,7 @@
  */
 package com.wesley.creche.services;
 
+import com.wesley.creche.domain.Administration.Emergency;
 import com.wesley.creche.domain.Administration.Employee;
 import com.wesley.creche.domain.Administration.Parents;
 import com.wesley.creche.domain.Administration.Progress;
@@ -857,4 +858,42 @@ private int childID;
         }
         return true;
     }
+    
+    public void resetPasswordAndUserName(String u, String p) throws NoSuchAlgorithmException, ClassNotFoundException, FileNotFoundException, SQLException{
+        
+            Connection con = getTheConnection();
+            Statement stmt = con.createStatement();
+
+            Encryption e = new Encryption();
+            String epas = e.encrypt(p);
+
+            stmt.executeUpdate("INSERT INTO user ("
+                    + "username, password) "
+                    + "VALUES ("
+                    + "'"+u+ "', "
+                    + "'"+epas+ "'"
+            + ")");
+            }
+    
+    
+    public void insertIntoEmergency(Emergency e) throws SQLException, ClassNotFoundException {
+        try {
+        Connection con = getTheConnection();
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate("INSERT INTO emergency ("
+                + "ambulance, police, fire) "
+                + "VALUES ("
+                + "'"+e.getAmbulance() + "',"
+                + "'"+e.getPolice() + "',"
+                + "'"+e.getFire()+"'"
+        + ")");
+        con.close();
+        }
+        catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex);
+        }
+    }
 }
+
+
+

@@ -9,6 +9,7 @@ package com.wesley.creche.client.desktop.Login;
 import com.wesley.creche.client.desktop.MainFrame;
 import com.wesley.creche.client.desktop.Styles.Styles;
 import com.wesley.creche.services.LoginService.LoginService;
+import com.wesley.creche.services.SQLQueries;
 
 /**
  *
@@ -48,7 +49,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Back");
+        jButton1.setText("Reset");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -118,9 +119,8 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        MainFrame main = new MainFrame();
-        main.setVisible(true);
-        this.setVisible(false);
+        SQLQueries s = new SQLQueries();
+        s.updatePassword("admin", "admin");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

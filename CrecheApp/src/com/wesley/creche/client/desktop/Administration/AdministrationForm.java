@@ -110,7 +110,12 @@ public class AdministrationForm extends javax.swing.JFrame {
             }
         });
 
-        jButton7.setText("Change Role");
+        jButton7.setText("View children");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,6 +215,12 @@ public class AdministrationForm extends javax.swing.JFrame {
         this.setVisible(false);
         c.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        ViewChildren c = new ViewChildren();
+        this.setVisible(false);
+        c.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments
