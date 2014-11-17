@@ -816,19 +816,19 @@ private int childID;
         return "";
     }
     
-    public ArrayList getEmployees() throws SQLException, ClassNotFoundException {
+    public String getEmployeeName() throws SQLException, ClassNotFoundException {
         
-        ArrayList employees = new ArrayList();
+        String employeeName = "";
         
         try {
             Connection con = getTheConnection();
             Statement stmt = con.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT name, last_name, email, ph_number, hire_date FROM employees");
-            int i = 0;
+            ResultSet rs = stmt.executeQuery("SELECT name FROM employees");
+            
             while (rs.next())
             {
-               employees.add(rs.getString(1)); 
+               employeeName = rs.getString(1);
             }
             rs.close();
             con.close();
@@ -836,7 +836,7 @@ private int childID;
         catch (SQLException | ClassNotFoundException ex) {
             System.out.println(ex);
         }
-        return employees;
+        return employeeName;
     }
     
     
