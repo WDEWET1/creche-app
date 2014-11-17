@@ -234,7 +234,7 @@ public class finReportsForm extends javax.swing.JFrame {
             
         }
         
-        JOptionPane.showMessageDialog(null, "Report Generated", "Success", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Report Generated. Please view in C:\\creche\\Reports", "Success", JOptionPane.INFORMATION_MESSAGE);
         
     }//GEN-LAST:event_btnSubmitActionPerformed
 
