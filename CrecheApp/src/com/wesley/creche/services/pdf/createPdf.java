@@ -113,19 +113,16 @@ public class createPdf {
         paragraph.add(Chunk.TABBING);
         paragraph.add(new Chunk(startDate));
         document.add(paragraph);
-        addEmptyLine(document, 1);
         
+        addEmptyLine(document, 1);
         document.add(new Paragraph("Account Status : " + accStatus));
         addEmptyLine(document, 1);
         
         document.add(new Paragraph("Total Amount Outstanding : R" + amountDue));
+        addEmptyLine(document, 3);
         
-        
-        
-        
-        
-        
-        
+        addLine(document);
+        document.add(new Paragraph("For any queries, please contact Administration : 10111"));
         
         document.close();
     }
