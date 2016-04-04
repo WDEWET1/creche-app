@@ -1,0 +1,202 @@
+USER’S
+
+MANUAL
+
+
+
+Childcare Management System
+
+
+CPUT – Software Engineering and Design
+
+
+November, 2014
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Revision Sheet
+
+Release No.	Date	Revision Description
+Rev. 0	16/11/2014	User’s Manual Template and Checklist
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.0	GENERAL INFORMATION
+
+System Overview
+
+A Childcare Management System. This software solution contains all the functions needed to run a crèche successfully. Functionality includes:
+
+•	Financial Administration
+•	Staff / Human Resource Administration
+•	Children Registration
+•	Health Care Monitor
+•	Detailed Childcare Progress
+•	Reports
+
+Financial Reports includes Income and Expenditure. Manages the cash flow of the business.
+Staff / Human Resources are concerned with the administration and management of employees.
+
+Children Registration allows a user to add and manage our customers (children) together with parents and all the necessary details that’s attached to a child.
+
+Healthcare Monitor is concerned with the overall well being of the child. Information such as allergies needs to be recorded upon registration and is important information during class time.
+
+Detailed Childcare Progress is concerned with the progress of the child during his/her stay at the facility. Being a school, progress monitoring is of outmost importance.
+
+Reports. A comprehensive Reporting module allows a user to view everything on the system. Financial stance, staff members and Progress to mention a few.
+
+
+
+
+
+
+
+
+
+
+
+
+2.0	FINANCE
+Firstly click on the finance button below:
+
+Choose between child fees or Income and expenses  :
+
+
+
+
+
+
+
+
+
+
+Child Fees:
+When clicking on child fees, the following screen displays:
+
+The above screen allows for the user to view children who have paid and children who have not paid by clicking on the radio buttons.
+
+
+When a user is on the not paid radio button the user can square the account, by clicking paid. The values you chose in the table will be displayed in the textboxes on the size, then filling in the amount in the pay amount text box you can click on update and pay the account.
+
+Income and expenditures:
+This form provides you with 2 basic radio buttons one for income and one for expenditure. The radio buttons displays in the table either income or expenditure based on your selection. You can also choose a specific month and year for which income and expenditure you would like to  display.
+
+
+Displays all expenditures:
+
+You can also add income and expenditure, if you click on the expenditure tab and click add you can add an expense.
+
+
+If you clicked on income you can add an income.
+
+
+
+3.0	ADMINISTRATION
+
+Select Administration
+
+
+Enter required Details
+
+Password facility
+
+
+4.0	REPORTS
+Select Report:
+
+
+
+
+Finance Reports
+
+
+HR Reports
+
+
+
+Select Human Resource To Add and Modify a user
+
+
+This will take you to the Human Resource main screen to allow you add and delete
+
+Fill in the information to add a staff member
+
+Click add to add a member
+
+Edit Staff member
+Select a member in the table click edit and you will be able to edit and update on your right-hand side
+
+
+And to delete an employee you can click delete and a popup will appear if you have successfully delete a user.

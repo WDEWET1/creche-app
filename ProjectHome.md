@@ -1,0 +1,1 @@
+This application is designed to keep track of the daily tasks of a creche environment, making the tasks of teachers easier.
